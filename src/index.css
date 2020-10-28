@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Fira+Sans:400,500,600,700,800');
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
+._2a97v {
+  background-color: crimson;
+}
+
+._mra1C {
+  background-color: white;
+}
+
+._13dNw { /*แทบข้าง*/
+  width: 250px;
+  height: 100vh;
+  background-color: deepskyblue;
+  color: white;
+  position: fixed;
+  left: 0;
+  top: 130px;
+  text-align: center;
+  transition: all .3s ease-in-out;
+}
+
+._VrCvP { 
+  width: 95%;
+  padding: 10px 0;
+  padding-left: 12px;
+  background-color: deepskyblue;
+  cursor: pointer;
+  text-align: left;
+}
+
+._VrCvP:hover {
+  background-color: #0377DA;
+  padding: 14px 0;
+  padding-left: 12px;
+  /*width: 20%;*/
+  transition: all .3s ease-in-out;
+}
+
+._2Vept {
+  padding-right: 10px;
+  display: inline-block;
+  width: 20%;
+  font-size: 15px;
+}
+
+._26ojv {
+  background-color: #3960D0;
+  color: white;
+}
+
+._2nNpb:hover {
+  background-color: #609BEB;
+  color: white;
+}
+
+._36YqV {
+  background-color: #FFFEFF;
+  color: black;
+}
+
+._8tJF8:hover {
+  background-color: #F6F6F6;
+}
+
+._2Ll57 { /*bg sidebar*/
+  background-color: white;
+  color: black;
+}
+
+._3HbC6:hover {
+  background-color: #2C2F3E;
+  color: white;
+}
+
+._GubVm {
+  text-align: left;
+  cursor: pointer;
+}
+
+._3ow2- {
+  margin: 0 1em;
+}
+
+._2fnX0 {
+  display: none;
+}
+
+._-s3Rh {
+  display: block;
+  position: relative;
+}
+
+._3qnVN {
+  width: 100px;
+  margin-top: 1em;
+}
+
+._2_oI1 {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+._2Q5t5 {
+  width: 85px;
+}
+
+input {
+  padding: 12px 20px;
+  margin: 15px 0;
+  box-sizing: border-box;
+}
+
+._17SmE {
+  left: 0;
+}
+
+._1NTmL {
+  right: 0;
+}
+
+._1vjRi {
+  background-color: #FD7E65;
+  color: white;
+}
+
+._2PHvo:hover {
+  background-color: #FD9768;
+}
+
+._1tllo {
+  background-color: #A771E4;
+  color: white;
+}
+
+._lbp0_:hover {
+  background-color: #E26FCF;
+}
+
+._2maJj {
+  background-color: #1DA4F4;
+  color: white;
+}
+
+._1NfpZ:hover {
+  background-color: #16BCDE;
+}
+._2TMpC {
+  float: right;
+}
+
+/*  */
+
+
+
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #ffffff !important;
+  min-height: 100vh;
+  display: flex;
+  font-weight: 400;
+  /* font-family: 'Fira Sans', sans-serif; */
+}
+
+h1,h2,h3,h4,h5,h6,label,span {
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 5px;
+  /* font-family: 'Fira Sans', sans-serif; */
+}
+
+
+
+body, html, .App, #root, .auth-wrapper, .auth-wrapper1 {
+  width: 100%;
+  height: 100%;
+}
+
+
+
+.navbar-light {
+  background-color: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+}
+
+.nav-link {
+  font-size: 12px;
+ 
+}
+
+
+
+
+.auth-wrapper {
+  display: flex;
+  margin-top: 40px;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+.auth-inner {
+  width: 450px;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  padding: 40px 55px 45px 55px;
+  border-radius: 15px;
+  /* transition: all .3s; */
+}
+
+.auth-wrapper1 {
+  display: flex;
+  margin-top: 40px;
+  justify-content: center;
+  flex-direction: column;
+  text-align: left;
+}
+
+
+
+
+.auth-wrapper .form-control:focus {
+  border-color: #167bff;
+  box-shadow: none;
+}
+
+.auth-wrapper h3 {
+  text-align: center;
+  margin: 0;
+  line-height: 1;
+  padding-bottom: 20px;
+}
+
+.custom-control-label {
+  font-weight: 400;
+}
+
+.forgot-password,
+.forgot-password a {
+  text-align: right;
+  font-size: 13px;
+  padding-bottom: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.forgot-password a {
+  color: #167bff;
+}
+
+
+.dont-have-account,
+.dont-have-account a {
+  text-align: center;
+  font-size: 13px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.dont-have-account a {
+  color: #167bff;
+}
+
+img {
+  margin-bottom: 2px;
+}
+

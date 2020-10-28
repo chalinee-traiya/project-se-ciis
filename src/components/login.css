@@ -1,0 +1,142 @@
+
+.auth-wrapper-log {
+    display: flex;
+    margin-top: 150px;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .auth-inner-log {
+    width: 450px;
+    margin: auto;
+    background: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 40px 55px 45px 55px;
+    border-radius: 15px;
+    /* transition: all .3s; */
+  }
+
+  
+.auth-wrapper .form-control:focus {
+    border-color: #167bff;
+    box-shadow: none;
+  }
+  
+  .auth-wrapper h3 {
+    text-align: center;
+    margin: 0;
+    line-height: 1;
+    padding-bottom: 20px;
+  }
+  
+  .custom-control-label {
+    font-weight: 400;
+  }
+  
+  .forgot-password,
+  .forgot-password a {
+    text-align: right;
+    font-size: 13px;
+    padding-bottom: 10px;
+    color: #7f7d7d;
+    margin: 0;
+  }
+  
+  .forgot-password a {
+    color: #167bff;
+  }
+  
+  
+  .dont-have-account,
+  .dont-have-account a {
+    text-align: center;
+    font-size: 12px;
+    padding-top: 10px;
+    color: #7f7d7d;
+    margin: 0;
+  }
+  
+  .dont-have-account a {
+    color: #167bff;
+  }
+  
+  img {
+    margin-bottom: 2px;
+  }
+  
+  .form input {
+    font-size: 18px;
+    /* padding: 10px 20px 10px 5px; */
+    border: none;
+    outline: none;
+    background: none;
+  }
+  
+  .username, .password {
+    display: block;
+    border-radius: 5px;
+    border: 3px solid #000000;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  .options {
+    text-align: right;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
+    padding: 5px 0px;
+    margin-bottom: 30px;
+    
+  }
+  
+  .forgot-password a {
+    color: (0,86,159);
+    text-decoration: none;
+    font-size: 10px;
+   
+  }
+
+  .btn1 {
+    width: 340px;
+    height: 35px;
+    font-size: 12px;
+    border-color: #BDBDBD;
+    border-radius: 4px;
+    border-width: 1px;
+    padding: 6px 12px;
+
+
+}
+  
+  
+
+  .textlog{
+    text-align: center;
+    font-size: 30px;
+    font-weight: bolder;
+  }
+
+  .form-group1 label{
+    font-size: 10px;
+    font-weight: bolder;
+
+  }
+
+
+  .form-control1 {
+      width: 340px;
+      height: 30px;
+      font-size: 10px;
+      color:#9EA0A5 ;
+      border-color: #BDBDBD;
+      border-radius: 4px;
+      border-style: solid;
+      border-width: 1px;
+      line-height: 15px;
+      padding: 6px 12px;
+
+  }
+
+  

@@ -1,0 +1,89 @@
+.auth-inner{
+    width: 1100px;
+    margin: 50px;
+    background: #ffffff;
+    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+    padding: 40px 55px 45px 55px;
+    border-radius: 15px;
+
+}
+.auth-wrapper{
+    display: flex;
+    margin-top: 80px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+}
+
+
+h1 {
+    display: flex;
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: bolder;
+  }
+
+.under-register {
+    display: flex;
+    margin-top: 2px;
+    font-size: 12px;
+    color: #9EA0A5;
+
+}
+
+.form-group label{
+    font-size: 10px;
+    font-weight: bolder;
+
+}
+
+.form-control {
+    width: 400px;
+    font-size: 10px;
+
+}
+
+.btn {
+    width: 177px;
+    height: 50px;
+    line-height:25px;
+    font-size: 12px;
+    margin-top: 30px;
+}
+
+.have-account,
+.have-account a {
+  text-align: right;
+  font-size: 12px;
+  padding-top: 10px;
+  color: #7f7d7d;
+  margin: 0;
+}
+
+.have-account a {
+  color: #167bff;
+}
+
+
+
+  
+
+.type{
+    font-size: 10px;
+    font-weight: bolder;
+}
+
+.form-controldrop{
+    width: 400px;
+    height: 28px;
+    font-size: 10px;
+    color:#9EA0A5 ;
+    border-color: #BDBDBD;
+    border-radius: 4px;
+    border-style: solid;
+    border-width: 1px;
+    line-height: 15px;
+    padding: 6px 12px;
+    
+}
