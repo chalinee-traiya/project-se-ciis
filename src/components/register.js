@@ -2,6 +2,7 @@ import React, { Component } from "react";
 // import { Form } from 'semantic-ui-react'
 import './register.css';
 
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 
 export default class Register extends Component {
@@ -9,6 +10,23 @@ export default class Register extends Component {
     render() {
         return (
             <form>
+               <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+        <div className="container">
+        <a href="/"><img src="/images/head.png" width="500px"/></a>
+          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <img src="/images/register.png" width="30px" />
+                <Link className="nav-link" to={"/register"}>REGISTER</Link>
+              </li> 
+              <li className="nav-item">
+                <img src="/images/login.png" width="30px" />
+                <Link className="nav-link" to={"/sign-in"}>LOGIN</Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
                 <div className="auth-wrapper">
                     <div className="auth-inner">
                       <div>

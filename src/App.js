@@ -9,9 +9,13 @@ import './App.css';
 // import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Home from "./components/home";
-import Login from "./components/login";
-import Register from "./components/register";
+import Home from "./components/Home";
+import Login from "./components/Login";
+import Register from "./components/Register";
+import Status from "./components/Status";
+import Payment from "./components/Payment";
+// import Navbar from './sidebar/Navbar';
+
 // import Signup from "./components/signup";
 
 
@@ -20,32 +24,15 @@ const App = () => {
 
     <Router>
     <div className="App">
-      <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-        <div className="container">
-        <a href="/"><img src="/images/head.png" width="500px"/></a>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <img src="/images/register.png" width="30px" />
-                <Link className="nav-link" to={"/register"}>REGISTER</Link>
-              </li> 
-              <li className="nav-item">
-                <img src="/images/login.png" width="30px" />
-                <Link className="nav-link" to={"/sign-in"}>LOGIN</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-
       
+      
+    {/* <Navbar />   */}
           <Switch>
             <Route exact path='/' component={Home} />
             <Route path="/sign-in" component={Login} />
             <Route path="/register" component={Register} />
-
-           
-
+            <Route path='/status' component={Status} />
+            <Route path='/payment' component={Payment} />
           </Switch>
     </div></Router>
   )
