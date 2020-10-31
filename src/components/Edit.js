@@ -1,38 +1,21 @@
-import React, { Component } from "react";
-// import { Form } from 'semantic-ui-react'
-import './register.css';
-
+import React from 'react';
+import Navbar from '../sidebar/Navbar';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
+function Edit() {
+  return (
+    
+    
 
-export default class Register extends Component {
-
-    render() {
-        return (
-            <form>
-               <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-        <div className="container">
-        <a href="/"><img src="/images/head.png" width="500px"/></a>
-          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <img src="/images/register.png" width="30px" />
-                <Link className="nav-link" to={"/register"}>REGISTER</Link>
-              </li> 
-              <li className="nav-item">
-                <img src="/images/login.png" width="30px" />
-                <Link className="nav-link" to={"/sign-in"}>LOGIN</Link>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-                <div className="auth-wrapper">
+    <div className='edit'>
+        <Navbar />  
+      <form>
+      <div className="auth-wrapper">
                     <div className="auth-inner">
                       <div>
-                        <h1>Register</h1>
+                        <h1>Edit</h1>
                         <div className="under-register">
-                          <p>Register on the platform </p>
+                          <p>Edit Profile </p>
                         </div>
                       </div>
 
@@ -83,7 +66,7 @@ export default class Register extends Component {
                         
                         <div class="form-group col-md-6 ">
                           <label for="input-email">Email *</label>
-                          <input type="email" class="form-control" id="input-email" placeholder="Email" />
+                          <input  disabled={true} type="email" class="form-control" id="input-email" placeholder="ciis@ku.th" />
                         </div>
 
                         <div class="form-group col-md-6">
@@ -124,17 +107,20 @@ export default class Register extends Component {
                       </div> 
 
                       <p className="have-account">
+                      
                         You have an account? 
                         <Link to={"/sign-in"}>
                         <a href="#">Sign In</a>
-                        </Link>
+                      </Link>
                       </p>
 
                       
      
                     </div>
                 </div>
-            </form>
-        );
-    }
+      </form>
+    </div>
+  );
 }
+
+export default Edit;

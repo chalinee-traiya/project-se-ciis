@@ -54,7 +54,10 @@ export default class Login extends Component {
                             </Link>
 
                             <p className="dont-have-account">
-                                Don't have account? <a href="#">Register</a>
+                                Don't have account? 
+                                <Link to={"/register"}>
+                                <a href="#">Register</a>
+                                </Link>
                             </p>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import axios from 'axios'; 
 
 
-class Payment extends React.Component {
+class test extends React.Component {
    useStyles = makeStyles((theme) => ({
     button: {
       margin: theme.spacing(1),
@@ -69,6 +69,18 @@ render(){
   </tbody>
 </Table>
 
+<div>
+                            
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
+    <img src="images/tmb.png" alt="" class="footer" />
+</div> 
+
+<div>                       
+    <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"/>
+    <img src="images/paypal.png" alt="" class="footer" />
+
+</div>
+
 <div> 
     <input type="file" onChange={this.onFileChange} /> 
         
@@ -88,4 +100,4 @@ render(){
 }
 }
 
-export default Payment;
+export default test;

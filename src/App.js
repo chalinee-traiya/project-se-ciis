@@ -8,12 +8,13 @@ import './App.css';
 // import StepConnector from '@material-ui/core/StepConnector';
 // import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-
-import Home from "./components/Home";
+import Home from "./components/test"; 
+//import Home from "./components/Home"
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Status from "./components/Status";
 import Payment from "./components/Payment";
+import Edit from "./components/Edit";
 // import Navbar from './sidebar/Navbar';
 
 // import Signup from "./components/signup";
@@ -33,6 +34,7 @@ const App = () => {
             <Route path="/register" component={Register} />
             <Route path='/status' component={Status} />
             <Route path='/payment' component={Payment} />
+            <Route path='/edit' component={Edit} />
           </Switch>
     </div></Router>
   )
