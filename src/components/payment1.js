@@ -10,10 +10,10 @@ import {
     PopupboxContainer
   } from 'react-popupbox';
 
-class test extends React.Component {
+class payment1 extends React.Component {
    useStyles = makeStyles((theme) => ({
     button: {
-      margin: theme.spacing(1),
+      
     },
   }));
   
@@ -119,4 +119,4 @@ render(){
 }
 }
 
-export default test;
+export default payment1;

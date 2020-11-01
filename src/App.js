@@ -8,7 +8,7 @@ import './App.css';
 // import StepConnector from '@material-ui/core/StepConnector';
 // import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-//import Home from "./payment/payment1";
+// import Home from "./components/payment1";
 // import Home from "./components/test"; 
 import Home from "./components/home"
 import Login from "./components/login";
@@ -36,6 +36,7 @@ const App = () => {
             <Route path='/status' component={Status} />
             <Route path='/payment' component={Payment} />
             <Route path='/edit' component={Edit} />
+            {/* <Route path='/payment1' component={Payment1} /> */}
           </Switch>
     </div></Router>
   )
