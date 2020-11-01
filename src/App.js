@@ -8,13 +8,14 @@ import './App.css';
 // import StepConnector from '@material-ui/core/StepConnector';
 // import Button from '@material-ui/core/Button';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Home from "./components/test"; 
-//import Home from "./components/Home"
-import Login from "./components/Login";
-import Register from "./components/Register";
+//import Home from "./payment/payment1";
+// import Home from "./components/test"; 
+import Home from "./components/home"
+import Login from "./components/login";
+import Register from "./components/register";
 import Status from "./components/Status";
 import Payment from "./components/Payment";
-import Edit from "./components/Edit";
+import Edit from "./components/edit";
 // import Navbar from './sidebar/Navbar';
 
 // import Signup from "./components/signup";

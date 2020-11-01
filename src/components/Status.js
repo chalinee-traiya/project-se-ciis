@@ -15,7 +15,7 @@ function Status() {
 
   return (
 
-    <div className='status'>
+    <div className='Status'>
         <Navbar />  
         <Table striped bordered hover>
   <thead>

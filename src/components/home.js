@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import './home.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-export default class Home extends Component {
+export default class home extends Component {
     render() {
         return (
 

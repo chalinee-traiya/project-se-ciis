@@ -5,7 +5,7 @@ import './register.css';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 
-export default class Register extends Component {
+export default class register extends Component {
 
     render() {
         return (
