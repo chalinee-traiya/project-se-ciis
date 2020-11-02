@@ -100,7 +100,7 @@ export default class register extends Component {
                   class="form-control"
                   value={this.state.idcard}
                   onChange={this.handleChange}
-                  placeholder="ex. 1103702411xxx....."
+                  placeholder="1103702411xxx"
                 />
               </div>
             </div>
@@ -114,7 +114,7 @@ export default class register extends Component {
                   type="first-name"
                   class="form-control"
                   id="first-name"
-                  placeholder="Your First-Name - ex.Chalinee......"
+                  placeholder="Chalinee"
                 />
               </div>
 
@@ -126,7 +126,7 @@ export default class register extends Component {
                   type="last-name"
                   class="form-control"
                   id="last-name"
-                  placeholder="Your Last-Name - ex.Traiyapanjawit......"
+                  placeholder="Traiyapanjawit"
                 />
               </div>
             </div>
@@ -167,7 +167,7 @@ export default class register extends Component {
                 type="username"
                 class="form-control"
                 id="inputusername"
-                placeholder="ex.chalinee......"
+                placeholder="chalinee1234"
               />
             </div>
 
@@ -179,7 +179,7 @@ export default class register extends Component {
                 type="password"
                 class="form-control"
                 id="inputpassword"
-                placeholder="ex.Chalinee1234....."
+                placeholder="••••••"
               />
             </div>
 
@@ -191,7 +191,7 @@ export default class register extends Component {
                 type="confirm-password"
                 class="form-control"
                 id="inputconfirm"
-                placeholder="Chalinee1234......"
+                placeholder="••••••"
               />
             </div>
 
