@@ -15,7 +15,7 @@ import Login from "./components/login";
 import Register from "./components/register";
 import Status from "./components/Status";
 import Payment from "./components/Payment";
-import Edit from "./components/edit";
+import Edit from "./components/Edit";
 // import Navbar from './sidebar/Navbar';
 
 // import Signup from "./components/signup";
