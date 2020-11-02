@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import { Form } from 'semantic-ui-react'
 import "./register.css";
 import firebase from "firebase";
@@ -24,37 +24,53 @@ export default class register extends Component {
     this.setState({ [evt.target.name]: evt.target.value });
   }
   handleSubmit(event) {
-    console.log(
-      this.state.fname +
-        this.state.lname +
-        this.state.id +
-        this.state.email +
-        this.state.username +
-        this.state.password +
-        this.state.cpassword
-    );
+    // console.log(
+    //    this.state.fname +
+    //     this.state.lname +
+    //     this.state.id +
+    //     this.state.email +
+    //     this.state.username +
+    //     this.state.password +
+    //     this.state.cpassword
+    // );
+    var uid = "";
+    let self = this;
     try {
+
       if (this.state.password != this.state.cpassword) {
         alert("รหัสผ่านไม่ตรงกัน");
       } else {
         firebase
-            .auth()
-            .createUserWithEmailAndPassword(this.state.email, this.state.password)
-            .then(() => {
-
-            })
-            .catch((error) => {
-              // Handle Errors here.
-              alert(error);
-            });
-        firebase.database().ref("User").push({
-          fname: this.state.fname,
-          lname: this.state.lname,
-          id: this.state.id,
-          email: this.state.email,
-          username: this.state.username,
-        });
+          .auth()
+          .createUserWithEmailAndPassword(this.state.email, this.state.password)
+          .then((user) => {
+            console.log(user[0]);
+            this.uid = user.uid;
+            self.uid = user.uid;
+          })
+          .catch((error) => {
+            // Handle Errors here.
+            alert(error);
+          });
+        console.log("//" + this.uid + "//" + uid + "//"+ self.uid + "//");
+        firebase
+          .database()
+          .ref("User")
+          .child(this.uid)
+          .push({
+            fname: this.state.fname,
+            lname: this.state.lname,
+            id: this.state.id,
+            email: this.state.email,
+            username: this.state.username,
+            is_admin: null,
+            paid: {
+              status: true,
+              timestamp: "",
+            },
+          });
         alert("สมัครสำเร็จ !");
+        console.log(this.uid);
       }
     } catch (err) {
       alert(err);
@@ -65,14 +81,6 @@ export default class register extends Component {
 
   render() {
     return (
-      // <form onSubmit={this.handleSubmit}>
-      //   <label>Email</label>
-      //   <input type="text" name="email" onChange={this.handleChange} />
-
-      //   <label>Password</label>
-      //   <input type="password" name="password" onChange={this.handleChange} />
-      //   <input type="submit" value="Submit" />
-      // </form>
       <form onSubmit={this.handleSubmit}>
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
@@ -196,7 +204,12 @@ export default class register extends Component {
                 <label for="inputState">
                   Type identity verification <span>*</span>
                 </label>
-                <select id="inputState" class="form-controldrop">
+                <select
+                  id="inputState"
+                  class="form-controldrop"
+                  onChange={this.handleChange}
+                  name="select"
+                >
                   <option selected>Choose ...</option>
                   <option>Author / Regular Full Paper (Thai Only)</option>
                   <option>Author / Virtual Full Paper(Thai & Foreign)</option>
@@ -240,7 +253,7 @@ export default class register extends Component {
                 Confirm Password <span>*</span>
               </label>
               <input
-                type="confirm-password"
+                type="password"
                 class="form-control"
                 id="inputconfirm"
                 placeholder="Chalinee1234......"
