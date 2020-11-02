@@ -2,17 +2,14 @@ import React from 'react';
 import Navbar from '../sidebar/Navbar';
 import Table from 'react-bootstrap/Table'
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import axios from 'axios'; 
 import Btnpayment from './btnpayment';
-import Payment1 from './payment1';
-
-import { TimerSharp } from '@material-ui/icons';
+import Button from '@material-ui/core/Button';
+import './payment.css';
 
 class Payment extends React.Component {
    useStyles = makeStyles((theme) => ({
     button: {
+      marginTop:100,
       margin: theme.spacing(1),
     },
   }));
@@ -78,8 +75,28 @@ render(){
   </tbody>
 </Table>
 {isPayment ? <Btnpayment/>:<div>
-    <button onClick={this.onClickBtn}>Click me</button>
+ 
+
+  <div>
+        <input type='radio' id='radio-1' name='myRadio' value='radio-1' 
+          checked={this.state.selected === 'radio-1'} onChange={(e) => this.setState({ selected: e.target.value })} />
+        <img src="/images/paypal.png" width="80px"  />
   
+        <input type='radio' id='radio-2' name='myRadio' value='radio-2' 
+          checked={this.state.selected === 'radio-2'} onChange={(e) => this.setState({ selected: e.target.value })} />
+          <img src="/images/tmb.png" width="80px"  />
+  </div>
+  
+  <div>
+    <Button
+      onClick={this.onClickBtn}
+      variant="contained"
+      color="default"
+      className={this.useStyles.button}
+      >
+      Confirm
+    </Button>
+  </div>
 </div>
 }
     

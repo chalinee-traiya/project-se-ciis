@@ -1,14 +1,8 @@
 import React from 'react';
-import Navbar from '../sidebar/Navbar';
-import Table from 'react-bootstrap/Table'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import axios from 'axios'; 
-import {
-    PopupboxManager,
-    PopupboxContainer
-  } from 'react-popupbox';
 
 export default class btnpayment extends React.Component {
     useStyles = makeStyles((theme) => ({
@@ -49,46 +43,9 @@ export default class btnpayment extends React.Component {
         axios.post("api/uploadfile", formData); 
       }; 
     
-      /////popup/////
-      updatePopupbox() {
-        const content = (
-          <div>
-            <span>Update popupbox with new content and config</span>
-            <button onClick={PopupboxManager.close}>Close</button>
-          </div>
-        )
-    
-        PopupboxManager.update({
-          content,
-          config: {
-            titleBar: {
-              text: 'Updated!'
-            }
-          }
-        })
-      }
       
-      openPopupbox() {
-        const content = (
-          <div>
-            <span>Open popupbox</span>
-            <button onClick={this.updatePopupbox}>Update!</button>
-          </div>
-        )
-    
-        PopupboxManager.open({
-          content,
-          config: {
-            titleBar: {
-              enable: true,
-              text: 'Step 1'
-            },
-            fadeIn: true,
-            fadeInSpeed: 500
-          }
-        })
-      }
-
+      
+      
     render(){
         return (
       <div> 

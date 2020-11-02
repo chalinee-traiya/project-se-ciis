@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.21.0",
     "bootstrap": "^4.5.2",
+    "firebase": "^8.0.0",
     "image-resize": "^1.1.5",
     "mdbreact": "^4.27.0",
     "react": "^16.13.1",

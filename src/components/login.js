@@ -1,10 +1,39 @@
 import React, { Component } from "react";
 import './login.css';
+import { signin } from '../helpers/auth';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 export default class Login extends Component {
+
+    constructor() {
+        super();
+        this.state = {
+          error: null,
+          email: '',
+          password: '',
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
+    
+      handleChange(event) {
+        this.setState({
+          [event.target.name]: event.target.value
+        });
+      }
+    
+      async handleSubmit(event) {
+        event.preventDefault();
+        this.setState({ error: '' });
+        try {
+          await signin(this.state.email, this.state.password);
+        } catch (error) {
+          this.setState({ error: error.message });
+        }
+      }
+
     render() {
         return (
-            <form>
+            <form autoComplete="off" onSubmit={this.handleSubmit}>
                  <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
         <a href="/"><img src="/images/head.png" width="500px"/></a>
@@ -49,9 +78,15 @@ export default class Login extends Component {
                             Forgot <a href="#">password?</a>
                         </p>
 
-                        <Link to="/status">
+                        {/* <Link to="/status">
                             <button type="button" class="btn1 btn-secondary ">SIGN IN</button>
-                            </Link>
+                            </Link> */}
+
+                        <div className="form-group1">
+                            {this.state.error ? <p className="text-danger">{this.state.error}</p> : null}
+                            <button className="btn1 btn-secondary">Login</button>
+                        </div>
+   
 
                             <p className="dont-have-account">
                                 Don't have account? 

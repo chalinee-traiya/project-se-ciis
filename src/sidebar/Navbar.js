@@ -29,7 +29,7 @@ function Navbar() {
               </Link>
           <div >
             
-            <a>Admin</a>
+            <a>Reshearcher</a>
         </div>
         <div className="user-pic">
             <img className=" imgprofile" src="/images/profile.jpg" alt="User " />
@@ -39,7 +39,7 @@ function Navbar() {
             
         </div>
         <div>
-        <span className="user-role"> Administrator</span>
+        <span className="user-role"> Reshearcher</span>
         </div>
         <hr />
 
