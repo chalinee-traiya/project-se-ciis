@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // import { Form } from 'semantic-ui-react'
 import "./register.css";
 import firebase from "firebase";
@@ -109,7 +109,9 @@ export default class register extends Component {
             <div class="form-row">
               <div class="form-group col-md-6">
                 <div>
-                  <label for="inputEmail4">Nationality *</label>
+                  <label for="inputEmail4">
+                    Nationality <span>*</span>
+                  </label>
                 </div>
 
                 <div class="form-check form-check-inline">
@@ -138,7 +140,9 @@ export default class register extends Component {
                 </div>
               </div>
               <div class="form-group col-md-6">
-                <label for="id">ID Card / Passport No. *</label>
+                <label for="id">
+                  ID Card / Passport No.<span>*</span>
+                </label>
                 {/* <input type="id" class="form-control" id="id" name="idcard" placeholder="ex.1103702411xxx....."/> */}
                 <input
                   type="text"
@@ -189,11 +193,11 @@ export default class register extends Component {
               </div>
 
               <div class="form-group col-md-6">
-                <label for="inputState">Type identity verification *</label>
+                <label for="inputState">
+                  Type identity verification <span>*</span>
+                </label>
                 <select id="inputState" class="form-controldrop">
-                  <option selected>
-                    Choose.......................................
-                  </option>
+                  <option selected>Choose ...</option>
                   <option>Author / Regular Full Paper (Thai Only)</option>
                   <option>Author / Virtual Full Paper(Thai & Foreign)</option>
                   <option>Author / Regular Short Paper (Thai Only)</option>
@@ -204,7 +208,9 @@ export default class register extends Component {
             </div>
 
             <div class="form-group">
-              <label for="inputusername">Create Username *</label>
+              <label for="inputusername">
+                Create Username <span>*</span>
+              </label>
               <input
                 type="username"
                 class="form-control"
@@ -216,7 +222,9 @@ export default class register extends Component {
             </div>
 
             <div class="form-group">
-              <label for="inputpassword">Create Password *</label>
+              <label for="inputpassword">
+                Create Password <span>*</span>
+              </label>
               <input
                 type="password"
                 class="form-control"
@@ -228,7 +236,9 @@ export default class register extends Component {
             </div>
 
             <div class="form-group">
-              <label for="inputconfirm">Confirm Password *</label>
+              <label for="inputconfirm">
+                Confirm Password <span>*</span>
+              </label>
               <input
                 type="confirm-password"
                 class="form-control"
