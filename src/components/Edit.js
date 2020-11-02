@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../sidebar/Navbar';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-function Edit() {
+function edit() {
   return (
     
     
@@ -123,4 +123,4 @@ function Edit() {
   );
 }
 
-export default Edit;
+export default edit;
