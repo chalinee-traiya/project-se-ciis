@@ -12,14 +12,7 @@ import firebase from "firebase";
 // }));
 class Status extends React.Component {
   // const classes = useStyles();
-  constructor() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-        window.location.href = "/sign-in";
-      } else {
-        
-      }
-    });
+
     // super();
     // this.state = {
     //   email: "",
@@ -27,7 +20,7 @@ class Status extends React.Component {
     // };
     // this.handleChange = this.handleChange.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  
   render() {
     return (
       <div className="Status">
