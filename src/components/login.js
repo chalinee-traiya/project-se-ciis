@@ -4,7 +4,7 @@ import { signin } from "../helpers/auth";
 import firebase from "firebase";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { auth, db, checkAdmin } from '../services/firebase';
-import firebase from "firebase";
+
 
 export function ReturnAdmin(isAdmin) {
   if (isAdmin) {
@@ -13,15 +13,7 @@ export function ReturnAdmin(isAdmin) {
   }
 }
 export default class Login extends Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+
 
 
 
@@ -185,4 +177,4 @@ export default class Login extends Component {
       </form>
     );
   }
-
+}
