@@ -164,7 +164,9 @@ export default class register extends Component {
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="first-name">First Name *</label>
+                <label for="first-name">
+                  First Name <span>*</span>
+                </label>
                 <input
                   type="first-name"
                   class="form-control"
@@ -176,7 +178,9 @@ export default class register extends Component {
               </div>
 
               <div class="form-group col-md-6">
-                <label for="last-name">Last Name *</label>
+                <label for="last-name">
+                  Last Name <span>*</span>
+                </label>
                 <input
                   type="last-name"
                   class="form-control"
@@ -190,7 +194,9 @@ export default class register extends Component {
 
             <div class="form-row">
               <div class="form-group col-md-6 ">
-                <label for="input-email">Email *</label>
+                <label for="input-email">
+                  Email <span>*</span>
+                </label>
                 <input
                   type="email"
                   class="form-control"
