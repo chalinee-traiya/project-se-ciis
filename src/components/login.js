@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import './login.css';
-import { signin } from '../helpers/auth';
+import "./login.css";
+import { signin } from "../helpers/auth";
+import firebase from "firebase";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { auth, db, checkAdmin } from '../services/firebase';
 import firebase from "firebase";
@@ -12,6 +13,16 @@ export function ReturnAdmin(isAdmin) {
   }
 }
 export default class Login extends Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
 
 
   constructor() {
@@ -43,11 +54,13 @@ export default class Login extends Component {
 
   handleSubmit(event) {
     // console.log(this.state.email + this.state.password);
+
     try {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(
+
           async (user) => {
             var user = firebase.auth().currentUser.uid;
             localStorage.setItem("UID-login", user)
@@ -73,6 +86,7 @@ export default class Login extends Component {
 
             }
             else {
+
               alert("else");
             }
           },
@@ -156,6 +170,7 @@ export default class Login extends Component {
                             </Link> */}
 
             <div className="form-group1">
+
               <button className="btn1 btn-secondary">Login</button>
             </div>
 
@@ -170,4 +185,4 @@ export default class Login extends Component {
       </form>
     );
   }
-}
+

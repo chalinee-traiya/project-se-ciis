@@ -16,8 +16,10 @@ import Register from "./components/register";
 import Status from "./components/Status_page";
 import Payment from "./components/Payment";
 import Edit from "./components/Edit";
+
 import {ReturnAdmin} from './components/login'
 // import { auth,db } from '../../services/firebase';
+
 // import Navbar from './sidebar/Navbar';
 
 // import Signup from "./components/signup";
