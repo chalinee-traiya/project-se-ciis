@@ -9,6 +9,12 @@ export default class Edit extends Component {
     // Initially, no file is selected
     selectedFile: null,
     isPayment: false,
+    fname: "",
+    lname: "",
+    email: "",
+    id: "",
+    type: "",
+    nation: "",
   };
   async componentDidMount() {
     var user = firebase.auth().currentUser;
@@ -19,7 +25,14 @@ export default class Edit extends Component {
         .once("value")
         .then((snapshot) => {
           console.log(snapshot.val());
-
+          this.setState({
+            fname: snapshot.val().fname,
+            lname: snapshot.val().lname,
+            email: snapshot.val().email,
+            id: snapshot.val().id,
+            type: snapshot.val().type,
+            nation: snapshot.val().nation,
+          });
           // var username =
           //   (snapshot.val() && snapshot.val().username) || "Anonymous";
           // // ...
@@ -31,159 +44,208 @@ export default class Edit extends Component {
   /////////////////////////////nan//////////////////////////////
   render() {
     return (
-      <div className="edit">
-        <Navbar />
-        <form>
-          <div className="auth-wrapper">
-            <div className="auth-inner">
-              <div>
-                <h1>Edit</h1>
-                <div className="under-register">
-                  <p>Edit Profile </p>
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <div>
-                    <label for="inputEmail4">Nationality *</label>
-                  </div>
-
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio1"
-                      value="option1"
-                    />
-                    <label class="form-check-label" for="inlineRadio1">
-                      Thai
-                    </label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="inlineRadioOptions"
-                      id="inlineRadio2"
-                      value="option2"
-                    />
-                    <label class="form-check-label" for="inlineRadio2">
-                      Foreign
-                    </label>
-                  </div>
-                </div>
-
-                <div class="form-group col-md-6">
-                  <label for="id">ID Card / Passport No. *</label>
-                  <input
-                    type="id"
-                    class="form-control"
-                    id="id"
-                    placeholder="ex.1103702411xxx....."
-                  />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="first-name">First Name *</label>
-                  <input
-                    type="first-name"
-                    class="form-control"
-                    id="first-name"
-                    placeholder="Your First-Name - ex.Chalinee......"
-                  />
-                </div>
-
-                <div class="form-group col-md-6">
-                  <label for="last-name">Last Name *</label>
-                  <input
-                    type="last-name"
-                    class="form-control"
-                    id="last-name"
-                    placeholder="Your Last-Name - ex.Traiyapanjawit......"
-                  />
-                </div>
-              </div>
-
-              <div class="form-row">
-                <div class="form-group col-md-6 ">
-                  <label for="input-email">Email *</label>
-                  <input
-                    // disabled={true}
-
-                    type="email"
-                    class="form-control"
-                    id="input-email"
-                    placeholder="ciis@ku.th"
-                  />
-                </div>
-
-                <div class="form-group col-md-6">
-                  <label for="inputState">Type identity verification *</label>
-                  <select id="inputState" class="form-controldrop">
-                    <option selected>
-                      Choose.......................................
-                    </option>
-                    <option>Author / Regular Full Paper (Thai Only)</option>
-                    <option>Author / Virtual Full Paper(Thai & Foreign)</option>
-                    <option>Author / Regular Short Paper (Thai Only)</option>
-                    <option>
-                      Author / Virtual Short Paper (Thai & Foreign)
-                    </option>
-                    <option>Participant (Thai Only)</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="inputusername">Create Username *</label>
-                <input
-                  type="username"
-                  class="form-control"
-                  id="inputusername"
-                  placeholder="ex.chalinee......"
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="inputpassword">Create Password *</label>
-                <input
-                  type="password"
-                  class="form-control"
-                  id="inputpassword"
-                  placeholder="ex.Chalinee1234....."
-                />
-              </div>
-
-              <div class="form-group">
-                <label for="inputconfirm">Confirm Password *</label>
-                <input
-                  type="confirm-password"
-                  class="form-control"
-                  id="inputconfirm"
-                  placeholder="Chalinee1234......"
-                />
-              </div>
-
-              <div align="right">
-                <button type="submit" class="btn btn-secondary ">
-                  SUBMIT
-                </button>
-              </div>
-
-              <p className="have-account">
-                You have an account?
-                <Link to={"/sign-in"}>
-                  <a href="#">Sign In</a>
-                </Link>
-              </p>
+      <form onSubmit={this.handleSubmit}>
+        <nav className="navbar navbar-expand-lg navbar-light fixed-top">
+          <div className="container">
+            <a href="/">
+              <img src="/images/head.png" width="500px" />
+            </a>
+            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul className="navbar-nav ml-auto">
+                <li className="nav-item">
+                  <img src="/images/register.png" width="30px" />
+                  <Link className="nav-link" to={"/register"}>
+                    REGISTER
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <img src="/images/login.png" width="30px" />
+                  <Link className="nav-link" to={"/sign-in"}>
+                    LOGIN
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
-        </form>
-      </div>
+        </nav>
+        <div className="auth-wrapper">
+          <div className="auth-inner">
+            <div>
+              <h1>Register</h1>
+              <div className="under-register">
+                <p>Register on the platform </p>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <div>
+                  <label for="inputEmail4">
+                    Nationality <span>*</span>
+                  </label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio1"
+                    value="Thai"
+                    onChange={this.handleChange}
+                    name="nation"
+                    checked={this.state.nation == "Thai"}
+                  />
+
+                  <label class="form-check-label" for="inlineRadio1">
+                    Thai
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio2"
+                    value="Foreign"
+                    onChange={this.handleChange}
+                    name="nation"
+                    checked={this.state.nation == "Foreign"}
+                  />
+                  <label class="form-check-label" for="inlineRadio2">
+                    Foreign
+                  </label>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="id">
+                  ID Card / Passport No.<span>*</span>
+                </label>
+                {/* <input type="id" class="form-control" id="id" name="idcard" placeholder="ex.1103702411xxx....."/> */}
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="ex.1103702411xxx....."
+                  onChange={this.handleChange}
+                  name="id"
+                  value={this.state.id}
+                />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="first-name">First Name *</label>
+                <input
+                  type="first-name"
+                  class="form-control"
+                  id="first-name"
+                  placeholder="Your First-Name - ex.Chalinee......"
+                  onChange={this.handleChange}
+                  name="fname"
+                  value={this.state.fname}
+                />
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="last-name">Last Name *</label>
+                <input
+                  type="last-name"
+                  class="form-control"
+                  id="last-name"
+                  placeholder="Your Last-Name - ex.Traiyapanjawit......"
+                  onChange={this.handleChange}
+                  name="lname"
+                  value={this.state.lname}
+                />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group col-md-6 ">
+                <label for="input-email">Email *</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  id="input-email"
+                  placeholder="Email"
+                  onChange={this.handleChange}
+                  name="email"
+                  value={this.state.email}
+                  disabled
+                />
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="inputState">
+                  Type identity verification <span>*</span>
+                </label>
+                <select
+                  id="inputState"
+                  class="form-controldrop"
+                  onChange={this.handleChange}
+                  name="type"
+                  required
+                >
+                  <option value="1" selected = {this.state.type == 1}>
+                    Author / Regular Full Paper (Thai Only)
+                  </option>
+                  <option value="2" selected = {this.state.type == 2}>
+                    Author / Virtual Full Paper(Thai & Foreign)
+                  </option>
+                  <option value="3" selected = {this.state.type == 3}>
+                    Author / Regular Short Paper (Thai Only)
+                  </option>
+                  <option value="4" selected = {this.state.type == 4}>
+                    Author / Virtual Short Paper (Thai & Foreign)
+                  </option>
+                  <option value="5" selected = {this.state.type == 5}>Participant (Thai Only)</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="inputpassword">
+                Create Password <span>*</span>
+              </label>
+              <input
+                type="password"
+                class="form-control"
+                id="inputpassword"
+                placeholder="ex.Chalinee1234....."
+                onChange={this.handleChange}
+                name="password"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="inputconfirm">
+                Confirm Password <span>*</span>
+              </label>
+              <input
+                type="password"
+                class="form-control"
+                id="inputconfirm"
+                placeholder="Chalinee1234......"
+                onChange={this.handleChange}
+                name="cpassword"
+              />
+            </div>
+
+            <div align="right">
+              <button type="submit" class="btn btn-secondary ">
+                SUBMIT
+              </button>
+            </div>
+
+            <p className="have-account">
+              You have an account?
+              <Link to={"/sign-in"}>
+                <a href="#">Sign In</a>
+              </Link>
+            </p>
+          </div>
+        </div>
+      </form>
     );
   }
 }
