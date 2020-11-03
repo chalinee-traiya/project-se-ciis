@@ -12,15 +12,16 @@ import firebase from "firebase";
 // }));
 class Status extends React.Component {
   // const classes = useStyles();
+  // constructor() {
 
-    // super();
-    // this.state = {
-    //   email: "",
-    //   password: "",
-    // };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-  
+  //   // super();
+  //   // this.state = {
+  //   //   email: "",
+  //   //   password: "",
+  //   // };
+  //   // this.handleChange = this.handleChange.bind(this);
+  //   // this.handleSubmit = this.handleSubmit.bind(this);
+  // }
   render() {
     return (
       <div className="Status">
