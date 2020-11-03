@@ -23,22 +23,34 @@ class Payment extends React.Component {
         .once("value")
         .then((snapshot) => {
           console.log(snapshot.val().paid);
-          if (snapshot.val().paid.status == true) {
-            this.setState({
-              paid: "จ่ายแล้ว",
-            });
-          } else {
+          if (snapshot.val().paid.status == 0) {
             this.setState({
               paid: "ยังไม่จ่าย",
             });
+          } else {
+            if(snapshot.val().paid.status == 1){
+              this.setState({
+                paid: "รอตรวจสอบ",
+              });
+            }else{
+              if(snapshot.val().paid.status == 2){
+                this.setState({
+                  paid: "จ่ายแล้ว",
+                });
+              }else{
+                if(snapshot.val().paid.status == 3){
+                  this.setState({
+                    paid: "ยกเลิก",
+                  });
+                }
+              }
+            }
           }
           user.providerData.forEach(profile => {
             localStorage.setItem("User", profile.email);
             localStorage.setItem("StatusLogin", 1);
-
             console.log("  Photo URL: " + profile.photoURL);
           });
-
           // var username =
           //   (snapshot.val() && snapshot.val().username) || "Anonymous";
           // // ...
