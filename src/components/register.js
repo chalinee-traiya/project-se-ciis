@@ -16,6 +16,8 @@ export default class register extends Component {
       password: "",
       cpassword: "",
       uid: "",
+      nation: "",
+      type: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,6 +36,7 @@ export default class register extends Component {
     //     this.state.password +
     //     this.state.cpassword
     // );
+    // console.log(this.state.select);
     try {
       if (this.state.password != this.state.cpassword) {
         alert("รหัสผ่านไม่ตรงกัน");
@@ -46,26 +49,29 @@ export default class register extends Component {
             await this.setState({
               uid: user.user.uid,
             });
-          }).then(()=>{
+          })
+          .then(() => {
             console.log(this.state.uid);
             firebase
-            .database()
-            .ref("User")
-            .child(this.state.uid)
-            .set({
-              fname: this.state.fname,
-              lname: this.state.lname,
-              id: this.state.id,
-              email: this.state.email,
-              username: this.state.username,
-              is_admin: "",
-              paid: {
-                status: true,
-                timestamp: "",
-                img: "",
-              },
-            });
-          alert("สมัครสำเร็จ !");
+              .database()
+              .ref("User")
+              .child(this.state.uid)
+              .set({
+                fname: this.state.fname,
+                lname: this.state.lname,
+                id: this.state.id,
+                email: this.state.email,
+                username: this.state.username,
+                is_admin: "",
+                paid: {
+                  status: 0,
+                  timestamp: "",
+                  img: "",
+                },
+                nation: this.state.nation,
+                type: this.state.type,
+              });
+            alert("สมัครสำเร็จ !");
           })
           .catch((error) => {
             // Handle Errors here.
@@ -128,7 +134,9 @@ export default class register extends Component {
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadio1"
-                    value="option1"
+                    value="Thai"
+                    onChange={this.handleChange}
+                    name="nation"
                   />
                   <label class="form-check-label" for="inlineRadio1">
                     Thai
@@ -140,7 +148,9 @@ export default class register extends Component {
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadio2"
-                    value="option2"
+                    value="Foreign"
+                    onChange={this.handleChange}
+                    name="nation"
                   />
                   <label class="form-check-label" for="inlineRadio2">
                     Foreign
@@ -208,14 +218,15 @@ export default class register extends Component {
                   id="inputState"
                   class="form-controldrop"
                   onChange={this.handleChange}
-                  name="select"
+                  name="type"
+                  required
                 >
                   <option selected>Choose ...</option>
-                  <option>Author / Regular Full Paper (Thai Only)</option>
-                  <option>Author / Virtual Full Paper(Thai & Foreign)</option>
-                  <option>Author / Regular Short Paper (Thai Only)</option>
-                  <option>Author / Virtual Short Paper (Thai & Foreign)</option>
-                  <option>Participant (Thai Only)</option>
+                  <option value="1">Author / Regular Full Paper (Thai Only)</option>
+                  <option value="2">Author / Virtual Full Paper(Thai & Foreign)</option>
+                  <option value="3">Author / Regular Short Paper (Thai Only)</option>
+                  <option value="4">Author / Virtual Short Paper (Thai & Foreign)</option>
+                  <option value="5">Participant (Thai Only)</option>
                 </select>
               </div>
             </div>
