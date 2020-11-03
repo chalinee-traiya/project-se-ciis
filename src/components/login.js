@@ -130,7 +130,7 @@ export default class Login extends Component {
             </div>
 
             <div className="form-group1">
-              <label>Email or Username *</label>
+              <label>Email or Username</label>
             </div>
 
             <input
@@ -142,7 +142,7 @@ export default class Login extends Component {
             />
 
             <div className="form-group1">
-              <label>Password *</label>
+              <label>Password</label>
             </div>
 
             <input

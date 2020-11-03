@@ -203,8 +203,8 @@ body, html, .App, #root, .auth-wrapper, .auth-wrapper1 {
 
 .auth-wrapper {
   display: flex;
-  margin-top: 40px;
   justify-content: center;
+  align-items: center;
   flex-direction: column;
   text-align: left;
 }
@@ -221,7 +221,6 @@ body, html, .App, #root, .auth-wrapper, .auth-wrapper1 {
 
 .auth-wrapper1 {
   display: flex;
-  margin-top: 40px;
   justify-content: center;
   flex-direction: column;
   text-align: left;
