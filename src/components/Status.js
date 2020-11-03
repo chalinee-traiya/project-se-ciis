@@ -1,10 +1,10 @@
-import React from "react";
-import Navbar from "../sidebar/Navbar";
-import Table from "react-bootstrap/Table";
-import { makeStyles } from "@material-ui/core/styles";
-import Button from "@material-ui/core/Button";
-import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
-import firebase from "firebase";
+import React from 'react';
+import Navbar from '../sidebar/Navbar';
+import Table from 'react-bootstrap/Table';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import ConfirmationNumberIcon from '@material-ui/icons/ConfirmationNumber';
+import firebase from 'firebase';
 // const useStyles = makeStyles((theme) => ({
 //   button: {
 //     margin: theme.spacing(1),

@@ -7,7 +7,6 @@ import './Navbar.css';
 import { IconContext } from 'react-icons';
 import { red } from '@material-ui/core/colors';
 
-
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
 
@@ -16,39 +15,43 @@ function Navbar() {
   return (
     <>
       <IconContext.Provider value={{ color: '#0c422c' }}>
-        <div className='navbar'>
+        {/* <div className='navbar'>
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          </div>
-          
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>    
-          <ul className='nav-menu-items' onClick={showSidebar}>
-          <Link to='status' className='xCross'>
-                <AiIcons.AiOutlineClose />
-              </Link>
-          <div >
-            
-            <a>Reshearcher</a>
-        </div>
-        <div className="user-pic">
-            <img className=" imgprofile" src="/images/profile.jpg" alt="User " />
-        </div>
-        <div>
-            <span className="user-name"><strong>Jhon Smith</strong></span>
-            
-        </div>
-        <div>
-        <span className="user-role"> Reshearcher</span>
-        </div>
-        <hr />
+          </div> */}
+
+        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+          <ul className="nav-menu-items" onClick={showSidebar}>
+            <Link to="status" className="xCross">
+              {/* <AiIcons.AiOutlineClose /> */}
+            </Link>
+            <div>
+              <a>Reshearcher</a>
+            </div>
+            <div className="user-pic">
+              <img
+                className=" imgprofile"
+                src="/images/profile.jpg"
+                alt="User "
+              />
+            </div>
+            <div>
+              <span className="user-name">
+                <strong>Jhon Smith</strong>
+              </span>
+            </div>
+            <div>
+              <span className="user-role"> Reshearcher</span>
+            </div>
+            {/* <hr /> */}
 
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
                   <Link to={item.path}>
                     {item.icon}
-                    <span>{item.title}</span>
+                    <span className="navbar-title">{item.title}</span>
                   </Link>
                 </li>
               );
