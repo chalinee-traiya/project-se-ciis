@@ -14,7 +14,7 @@ function Navbar() {
 
   return (
     <>
-      <IconContext.Provider value={{ color: '#0c422c' }}>
+      <IconContext.Provider value={{ color: '#FFFFFF' }}>
         {/* <div className='navbar'>
           <Link to='#' className='menu-bars'>
             <FaIcons.FaBars onClick={showSidebar} />
@@ -26,9 +26,7 @@ function Navbar() {
             <Link to="status" className="xCross">
               {/* <AiIcons.AiOutlineClose /> */}
             </Link>
-            <div>
-              <a>Reshearcher</a>
-            </div>
+            <div></div>
             <div className="user-pic">
               <img
                 className=" imgprofile"
@@ -44,7 +42,7 @@ function Navbar() {
             <div>
               <span className="user-role"> Reshearcher</span>
             </div>
-            {/* <hr /> */}
+            <hr />
 
             {SidebarData.map((item, index) => {
               return (
