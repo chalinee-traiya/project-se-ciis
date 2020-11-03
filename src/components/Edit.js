@@ -441,7 +441,15 @@ export default class Edit extends Component {
         updates["/User/" + user.uid + "/id/"] = this.state.id;
         updates["/User/" + user.uid + "/nation/"] = this.state.nation;
         updates["/User/" + user.uid + "/type/"] = this.state.type;
-        return firebase.database().ref().update(updates);
+        firebase.database().ref().update(updates);
+        firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          window.location.href = "/sign-in";
+        });
+
+
       }
     } catch (err) {
       alert(err);
@@ -452,35 +460,10 @@ export default class Edit extends Component {
 
   render() {
     return (
+      <div className="edit">
+      <Navbar />
       <form onSubmit={this.handleSubmit}>
-        <input
-          type="text"
-          value={this.state.value}
-          onChange={this.handleChange}
-        />
-        <nav className="navbar navbar-expand-lg navbar-light fixed-top">
-          <div className="container">
-            <a href="/">
-              <img src="/images/head.png" width="500px" />
-            </a>
-            <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <img src="/images/register.png" width="30px" />
-                  <Link className="nav-link" to={"/register"}>
-                    REGISTER
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <img src="/images/login.png" width="30px" />
-                  <Link className="nav-link" to={"/sign-in"}>
-                    LOGIN
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+
         <div className="auth-wrapper">
           <div className="auth-inner">
             <div>
@@ -617,35 +600,6 @@ export default class Edit extends Component {
                 </select>
               </div>
             </div>
-
-            <div class="form-group">
-              <label for="inputpassword">
-                Create Password <span>*</span>
-              </label>
-              <input
-                type="password"
-                class="form-control"
-                id="inputpassword"
-                placeholder="ex.Chalinee1234....."
-                onChange={this.handleChange}
-                name="password"
-              />
-            </div>
-
-            <div class="form-group">
-              <label for="inputconfirm">
-                Confirm Password <span>*</span>
-              </label>
-              <input
-                type="password"
-                class="form-control"
-                id="inputconfirm"
-                placeholder="Chalinee1234......"
-                onChange={this.handleChange}
-                name="cpassword"
-              />
-            </div>
-
             <div align="right">
               <button type="submit" class="btn btn-secondary ">
                 SUBMIT
@@ -661,6 +615,7 @@ export default class Edit extends Component {
           </div>
         </div>
       </form>
+      </div>
     );
   }
 }
