@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { Component } from "react";
 import Navbar from '../sidebar/Navbar';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import firebase from "firebase";
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-function edit() {
+export default class Edit extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      fname: "",
+      lname: "",
+      id: "",
+      email: "",
+      username: "",
+      password: "",
+      cpassword: "",
+    };
+
+  }
+/////////////////////////////nan//////////////////////////////
+  render() {
   return (
     
     
@@ -62,12 +79,17 @@ function edit() {
 
 
 
-                      <div class="form-row">
-                        
-                        <div class="form-group col-md-6 ">
-                          <label for="input-email">Email *</label>
-                          <input  disabled={true} type="email" class="form-control" id="input-email" placeholder="ciis@ku.th" />
-                        </div>
+            <div class="form-row">
+              <div class="form-group col-md-6 ">
+                <label for="input-email">Email *</label>
+                <input
+                  // disabled={true}
+                  type="email"
+                  class="form-control"
+                  id="input-email"
+                  placeholder="ciis@ku.th"
+                />
+              </div>
 
                         <div class="form-group col-md-6">
                           <label for="inputState">Type identity verification *</label>
@@ -122,5 +144,5 @@ function edit() {
     </div>
   );
 }
+}
 
-export default edit;
