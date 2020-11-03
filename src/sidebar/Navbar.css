@@ -2,6 +2,7 @@
   background-color: white;
   height: 80px;
   display: flex;
+  z-index: 99;
   /* justify-content: start; */
   /* align-items: center; */
 }
@@ -110,5 +111,10 @@
 .navbar-title {
   color: #f5f5f5;
   text-transform: uppercase;
+  
+}
+
+.status-content {
+  display: flex
   
 }

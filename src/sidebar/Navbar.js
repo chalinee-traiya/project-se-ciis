@@ -6,6 +6,7 @@ import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 import { red } from '@material-ui/core/colors';
+import Image from 'react-bootstrap/Image';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
@@ -40,7 +41,7 @@ function Navbar() {
               </span>
             </div>
             <div>
-              <span className="user-role"> Reshearcher</span>
+              <span className="user-role">Reshearcher</span>
             </div>
             <hr />
 
@@ -57,6 +58,9 @@ function Navbar() {
           </ul>
         </nav>
       </IconContext.Provider>
+      <div className="status-content">
+        <Image src=".../public/images/head.png" fluid />
+      </div>
     </>
   );
 }
