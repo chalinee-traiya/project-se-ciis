@@ -3,6 +3,15 @@ import "./login.css";
 import { signin } from "../helpers/auth";
 import firebase from "firebase";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { auth, db, checkAdmin } from '../services/firebase';
+import firebase from "firebase";
+
+export function ReturnAdmin(isAdmin) {
+  if (isAdmin) {
+    console.log("I'm called")
+    return isAdmin
+  }
+}
 export default class Login extends Component {
   constructor() {
     super();
@@ -14,23 +23,70 @@ export default class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value });
+
+
+  constructor() {
+    super();
+    this.state = {
+      error: null,
+      email: '',
+      password: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  async handleSubmit(event) {
+    event.preventDefault();
+    this.setState({ error: '' });
+    try {
+      await signin(this.state.email, this.state.password);
+    } catch (error) {
+      this.setState({ error: error.message });
+    }
   }
 
   handleSubmit(event) {
-    console.log(this.state.email + this.state.password);
+    // console.log(this.state.email + this.state.password);
+
     try {
       firebase
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(
-          (user) => {
-            var user = firebase.auth().currentUser;
+
+          async (user) => {
+            var user = firebase.auth().currentUser.uid;
+            localStorage.setItem("UID-login", user)
             if (user != null) {
-              window.location.href = "/status";
+              // db.ref('Admin/').on("value", snapshot => {
+              //   snapshot.forEach((snap) => {
+              //     console.log(snap.key)
+              //     var Uid = snap.key;
+              //     if (user == Uid) {
+              //       console.log("I'm Admin")
+              //       this.setState({ isAdmin: true })
+
+
+
+              //     }
+              //     else {
+              //       console.log("Not admin")
+              //     }
+              //   })
+
+              // })
+              window.location.href = '/Status'
+
             }
-            else{
+            else {
+
               alert("else");
             }
           },
@@ -129,4 +185,4 @@ export default class Login extends Component {
       </form>
     );
   }
-}
+

@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { Component } from "react";
 import Navbar from '../sidebar/Navbar';
+
+import firebase from "firebase";
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
-function Edit() {
+export default class Edit extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      fname: "",
+      lname: "",
+      id: "",
+      email: "",
+      username: "",
+      password: "",
+      cpassword: "",
+    };
+
+  }
+/////////////////////////////nan//////////////////////////////
+  render() {
+
   return (
     <div className="edit">
       <Navbar />
@@ -85,7 +104,9 @@ function Edit() {
               <div class="form-group col-md-6 ">
                 <label for="input-email">Email *</label>
                 <input
-                  disabled={true}
+
+                  // disabled={true}
+
                   type="email"
                   class="form-control"
                   id="input-email"
@@ -156,5 +177,7 @@ function Edit() {
     </div>
   );
 }
+}
 
-export default Edit;
+
+
