@@ -63,6 +63,7 @@ render(){
     <tr>
       <th>Research ID</th>
       <th>Research Name</th>
+      <th>Price</th>
       <th>Status</th>
     </tr>
   </thead>
@@ -70,12 +71,28 @@ render(){
     <tr>
       <td>000000</td>
       <td>Register</td>
+      <th>8000</th>
       <td>Wait</td>
     </tr>
   </tbody>
+  <tbody>
+    <tr>
+      <td>Total</td>   
+      <th>8000</th>
+    </tr>
+  </tbody>
 </Table>
+
+
+
 {isPayment ? <Btnpayment/>:<div>
  
+  {/* <div>
+  <input type='radio' id='radioFood' name='radioFood' value='radioFood'
+   
+    checked={this.state.selected === 'Food'} />
+    <label for="radioFood">Food</label>
+    </div> */}
 
   <div>
         <input type='radio' id='radio-1' name='myRadio' value='radio-1' 

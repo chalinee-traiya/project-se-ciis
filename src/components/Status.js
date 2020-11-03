@@ -13,7 +13,7 @@ import firebase from "firebase";
 class Status extends React.Component {
   // const classes = useStyles();
   // constructor() {
-    
+
   //   // super();
   //   // this.state = {
   //   //   email: "",
