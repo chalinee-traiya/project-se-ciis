@@ -46,11 +46,6 @@ class Payment extends React.Component {
               }
             }
           }
-          user.providerData.forEach(profile => {
-            localStorage.setItem("User", profile.email);
-            localStorage.setItem("StatusLogin", 1);
-            console.log("  Photo URL: " + profile.photoURL);
-          });
           // var username =
           //   (snapshot.val() && snapshot.val().username) || "Anonymous";
           // // ...

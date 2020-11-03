@@ -59,6 +59,7 @@ export default class btnpayment extends React.Component {
           updates["/User/" + user.uid + "/paid/" + '/img/'] = this.state.img;
           updates["/User/" + user.uid + "/paid/" + '/status/'] = 1;
           return firebase.database().ref().update(updates);
+          window.location.href = "/payment";
         });
     } else {
       window.location.href = "/sign-in";

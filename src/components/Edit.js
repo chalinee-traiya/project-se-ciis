@@ -1,183 +1,189 @@
 import React, { Component } from "react";
-import Navbar from '../sidebar/Navbar';
+import Navbar from "../sidebar/Navbar";
 
 import firebase from "firebase";
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default class Edit extends Component {
+  state = {
+    // Initially, no file is selected
+    selectedFile: null,
+    isPayment: false,
+  };
+  async componentDidMount() {
+    var user = firebase.auth().currentUser;
+    if (user != null) {
+      return firebase
+        .database()
+        .ref("/User/" + user.uid)
+        .once("value")
+        .then((snapshot) => {
+          console.log(snapshot.val());
 
-  constructor() {
-    super();
-    this.state = {
-      fname: "",
-      lname: "",
-      id: "",
-      email: "",
-      username: "",
-      password: "",
-      cpassword: "",
-    };
-
+          // var username =
+          //   (snapshot.val() && snapshot.val().username) || "Anonymous";
+          // // ...
+        });
+    } else {
+      window.location.href = "/sign-in";
+    }
   }
-/////////////////////////////nan//////////////////////////////
+  /////////////////////////////nan//////////////////////////////
   render() {
-
-  return (
-    <div className="edit">
-      <Navbar />
-      <form>
-        <div className="auth-wrapper">
-          <div className="auth-inner">
-            <div>
-              <h1>Edit</h1>
-              <div className="under-register">
-                <p>Edit Profile </p>
+    return (
+      <div className="edit">
+        <Navbar />
+        <form>
+          <div className="auth-wrapper">
+            <div className="auth-inner">
+              <div>
+                <h1>Edit</h1>
+                <div className="under-register">
+                  <p>Edit Profile </p>
+                </div>
               </div>
-            </div>
 
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <div>
-                  <label for="inputEmail4">Nationality *</label>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <div>
+                    <label for="inputEmail4">Nationality *</label>
+                  </div>
+
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="inlineRadioOptions"
+                      id="inlineRadio1"
+                      value="option1"
+                    />
+                    <label class="form-check-label" for="inlineRadio1">
+                      Thai
+                    </label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="inlineRadioOptions"
+                      id="inlineRadio2"
+                      value="option2"
+                    />
+                    <label class="form-check-label" for="inlineRadio2">
+                      Foreign
+                    </label>
+                  </div>
                 </div>
 
-                <div class="form-check form-check-inline">
+                <div class="form-group col-md-6">
+                  <label for="id">ID Card / Passport No. *</label>
                   <input
-                    class="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio1"
-                    value="option1"
+                    type="id"
+                    class="form-control"
+                    id="id"
+                    placeholder="ex.1103702411xxx....."
                   />
-                  <label class="form-check-label" for="inlineRadio1">
-                    Thai
-                  </label>
                 </div>
-                <div class="form-check form-check-inline">
+              </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="first-name">First Name *</label>
                   <input
-                    class="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    value="option2"
+                    type="first-name"
+                    class="form-control"
+                    id="first-name"
+                    placeholder="Your First-Name - ex.Chalinee......"
                   />
-                  <label class="form-check-label" for="inlineRadio2">
-                    Foreign
-                  </label>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="last-name">Last Name *</label>
+                  <input
+                    type="last-name"
+                    class="form-control"
+                    id="last-name"
+                    placeholder="Your Last-Name - ex.Traiyapanjawit......"
+                  />
                 </div>
               </div>
 
-              <div class="form-group col-md-6">
-                <label for="id">ID Card / Passport No. *</label>
-                <input
-                  type="id"
-                  class="form-control"
-                  id="id"
-                  placeholder="ex.1103702411xxx....."
-                />
+              <div class="form-row">
+                <div class="form-group col-md-6 ">
+                  <label for="input-email">Email *</label>
+                  <input
+                    // disabled={true}
+
+                    type="email"
+                    class="form-control"
+                    id="input-email"
+                    placeholder="ciis@ku.th"
+                  />
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="inputState">Type identity verification *</label>
+                  <select id="inputState" class="form-controldrop">
+                    <option selected>
+                      Choose.......................................
+                    </option>
+                    <option>Author / Regular Full Paper (Thai Only)</option>
+                    <option>Author / Virtual Full Paper(Thai & Foreign)</option>
+                    <option>Author / Regular Short Paper (Thai Only)</option>
+                    <option>
+                      Author / Virtual Short Paper (Thai & Foreign)
+                    </option>
+                    <option>Participant (Thai Only)</option>
+                  </select>
+                </div>
               </div>
-            </div>
 
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="first-name">First Name *</label>
+              <div class="form-group">
+                <label for="inputusername">Create Username *</label>
                 <input
-                  type="first-name"
+                  type="username"
                   class="form-control"
-                  id="first-name"
-                  placeholder="Your First-Name - ex.Chalinee......"
-                />
-              </div>
-
-              <div class="form-group col-md-6">
-                <label for="last-name">Last Name *</label>
-                <input
-                  type="last-name"
-                  class="form-control"
-                  id="last-name"
-                  placeholder="Your Last-Name - ex.Traiyapanjawit......"
-                />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6 ">
-                <label for="input-email">Email *</label>
-                <input
-
-                  // disabled={true}
-
-                  type="email"
-                  class="form-control"
-                  id="input-email"
-                  placeholder="ciis@ku.th"
+                  id="inputusername"
+                  placeholder="ex.chalinee......"
                 />
               </div>
 
-              <div class="form-group col-md-6">
-                <label for="inputState">Type identity verification *</label>
-                <select id="inputState" class="form-controldrop">
-                  <option selected>
-                    Choose.......................................
-                  </option>
-                  <option>Author / Regular Full Paper (Thai Only)</option>
-                  <option>Author / Virtual Full Paper(Thai & Foreign)</option>
-                  <option>Author / Regular Short Paper (Thai Only)</option>
-                  <option>Author / Virtual Short Paper (Thai & Foreign)</option>
-                  <option>Participant (Thai Only)</option>
-                </select>
+              <div class="form-group">
+                <label for="inputpassword">Create Password *</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="inputpassword"
+                  placeholder="ex.Chalinee1234....."
+                />
               </div>
-            </div>
 
-            <div class="form-group">
-              <label for="inputusername">Create Username *</label>
-              <input
-                type="username"
-                class="form-control"
-                id="inputusername"
-                placeholder="ex.chalinee......"
-              />
-            </div>
+              <div class="form-group">
+                <label for="inputconfirm">Confirm Password *</label>
+                <input
+                  type="confirm-password"
+                  class="form-control"
+                  id="inputconfirm"
+                  placeholder="Chalinee1234......"
+                />
+              </div>
 
-            <div class="form-group">
-              <label for="inputpassword">Create Password *</label>
-              <input
-                type="password"
-                class="form-control"
-                id="inputpassword"
-                placeholder="ex.Chalinee1234....."
-              />
-            </div>
+              <div align="right">
+                <button type="submit" class="btn btn-secondary ">
+                  SUBMIT
+                </button>
+              </div>
 
-            <div class="form-group">
-              <label for="inputconfirm">Confirm Password *</label>
-              <input
-                type="confirm-password"
-                class="form-control"
-                id="inputconfirm"
-                placeholder="Chalinee1234......"
-              />
+              <p className="have-account">
+                You have an account?
+                <Link to={"/sign-in"}>
+                  <a href="#">Sign In</a>
+                </Link>
+              </p>
             </div>
-
-            <div align="right">
-              <button type="submit" class="btn btn-secondary ">
-                SUBMIT
-              </button>
-            </div>
-
-            <p className="have-account">
-              You have an account?
-              <Link to={'/sign-in'}>
-                <a href="#">Sign In</a>
-              </Link>
-            </p>
           </div>
-        </div>
-      </form>
-    </div>
-  );
+        </form>
+      </div>
+    );
+  }
 }
-}
-
-
-
