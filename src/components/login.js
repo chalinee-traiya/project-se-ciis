@@ -1,8 +1,22 @@
-import React, { Component } from 'react';
-import './login.css';
-import { signin } from '../helpers/auth';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import React, { Component } from "react";
+import "./login.css";
+import { signin } from "../helpers/auth";
+import firebase from "firebase";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { auth, db, checkAdmin } from '../services/firebase';
+
+
+export function ReturnAdmin(isAdmin) {
+  if (isAdmin) {
+    console.log("I'm called")
+    return isAdmin
+  }
+}
 export default class Login extends Component {
+
+
+
+
   constructor() {
     super();
     this.state = {
@@ -16,7 +30,7 @@ export default class Login extends Component {
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value,
+      [event.target.name]: event.target.value
     });
   }
 
@@ -28,6 +42,56 @@ export default class Login extends Component {
     } catch (error) {
       this.setState({ error: error.message });
     }
+  }
+
+  handleSubmit(event) {
+    // console.log(this.state.email + this.state.password);
+
+    try {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.state.email, this.state.password)
+        .then(
+
+          async (user) => {
+            var user = firebase.auth().currentUser.uid;
+            localStorage.setItem("UID-login", user)
+            if (user != null) {
+              // db.ref('Admin/').on("value", snapshot => {
+              //   snapshot.forEach((snap) => {
+              //     console.log(snap.key)
+              //     var Uid = snap.key;
+              //     if (user == Uid) {
+              //       console.log("I'm Admin")
+              //       this.setState({ isAdmin: true })
+
+
+
+              //     }
+              //     else {
+              //       console.log("Not admin")
+              //     }
+              //   })
+
+              // })
+              window.location.href = '/Status'
+
+            }
+            else {
+
+              alert("else");
+            }
+          },
+          (err) => {
+            alert(err.message);
+          }
+        );
+      event.preventDefault();
+    } catch (err) {
+      // alert(err);
+    }
+
+    event.preventDefault();
   }
 
   render() {
@@ -42,13 +106,13 @@ export default class Login extends Component {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <img src="/images/register.png" width="30px" />
-                  <Link className="nav-link" to={'/register'}>
+                  <Link className="nav-link" to={"/register"}>
                     REGISTER
                   </Link>
                 </li>
                 <li className="nav-item">
                   <img src="/images/login.png" width="30px" />
-                  <Link className="nav-link" to={'/Status'}>
+                  <Link className="nav-link" to={"/Status"}>
                     LOGIN
                   </Link>
                 </li>
@@ -66,23 +130,27 @@ export default class Login extends Component {
             </div>
 
             <div className="form-group1">
-              <label>
-                Email or Username<span>*</span>
-              </label>
+              <label>Email or Username *</label>
             </div>
 
-            <input type="email" className="form-control1" placeholder="email" />
+            <input
+              type="email"
+              className="form-control1"
+              placeholder="email"
+              onChange={this.handleChange}
+              name="email"
+            />
 
             <div className="form-group1">
-              <label>
-                Password<span>*</span>
-              </label>
+              <label>Password *</label>
             </div>
 
             <input
               type="password"
               className="form-control1"
               placeholder="password"
+              onChange={this.handleChange}
+              name="password"
             />
 
             <p className="forgot-password text-right">
@@ -94,15 +162,12 @@ export default class Login extends Component {
                             </Link> */}
 
             <div className="form-group1">
-              {this.state.error ? (
-                <p className="text-danger">{this.state.error}</p>
-              ) : null}
               <button className="btn1 btn-secondary">Login</button>
             </div>
 
             <p className="dont-have-account">
               Don't have account?
-              <Link to={'/register'}>
+              <Link to={"/register"}>
                 <a href="#">Register</a>
               </Link>
             </p>
