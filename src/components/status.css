@@ -1,4 +1,10 @@
 .Status {
     display: flex;
-    justify-self: start;
+}
+
+.App-status-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
 }
