@@ -15,6 +15,7 @@ export default class register extends Component {
       username: "",
       password: "",
       cpassword: "",
+      uid: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,44 +34,43 @@ export default class register extends Component {
     //     this.state.password +
     //     this.state.cpassword
     // );
-    var uid = "";
-    let self = this;
     try {
-
       if (this.state.password != this.state.cpassword) {
         alert("รหัสผ่านไม่ตรงกัน");
       } else {
         firebase
           .auth()
           .createUserWithEmailAndPassword(this.state.email, this.state.password)
-          .then((user) => {
-            console.log(user[0]);
-            this.uid = user.uid;
-            self.uid = user.uid;
+          .then(async (user) => {
+            console.log(user.user.uid);
+            await this.setState({
+              uid: user.user.uid,
+            });
+          }).then(()=>{
+            console.log(this.state.uid);
+            firebase
+            .database()
+            .ref("User")
+            .child(this.state.uid)
+            .set({
+              fname: this.state.fname,
+              lname: this.state.lname,
+              id: this.state.id,
+              email: this.state.email,
+              username: this.state.username,
+              is_admin: "",
+              paid: {
+                status: true,
+                timestamp: "",
+                img: "",
+              },
+            });
+          alert("สมัครสำเร็จ !");
           })
           .catch((error) => {
             // Handle Errors here.
             alert(error);
           });
-        console.log("//" + this.uid + "//" + uid + "//"+ self.uid + "//");
-        firebase
-          .database()
-          .ref("User")
-          .child(this.uid)
-          .push({
-            fname: this.state.fname,
-            lname: this.state.lname,
-            id: this.state.id,
-            email: this.state.email,
-            username: this.state.username,
-            is_admin: null,
-            paid: {
-              status: true,
-              timestamp: "",
-            },
-          });
-        alert("สมัครสำเร็จ !");
-        console.log(this.uid);
       }
     } catch (err) {
       alert(err);

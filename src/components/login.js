@@ -29,8 +29,7 @@ export default class Login extends Component {
             var user = firebase.auth().currentUser;
             if (user != null) {
               window.location.href = "/status";
-            }
-            else{
+            } else {
               alert("else");
             }
           },
@@ -114,7 +113,6 @@ export default class Login extends Component {
                             </Link> */}
 
             <div className="form-group1">
-
               <button className="btn1 btn-secondary">Login</button>
             </div>
 

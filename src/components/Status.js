@@ -12,22 +12,16 @@ import firebase from "firebase";
 // }));
 class Status extends React.Component {
   // const classes = useStyles();
-  constructor() {
-    firebase.auth().onAuthStateChanged((user) => {
-      if (!user) {
-        window.location.href = "/sign-in";
-      } else {
-        
-      }
-    });
-    // super();
-    // this.state = {
-    //   email: "",
-    //   password: "",
-    // };
-    // this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  // constructor() {
+    
+  //   // super();
+  //   // this.state = {
+  //   //   email: "",
+  //   //   password: "",
+  //   // };
+  //   // this.handleChange = this.handleChange.bind(this);
+  //   // this.handleSubmit = this.handleSubmit.bind(this);
+  // }
   render() {
     return (
       <div className="Status">
