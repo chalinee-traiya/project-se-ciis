@@ -57,7 +57,9 @@ export default class btnpayment extends React.Component {
           // Write the new post's data simultaneously in the posts list and the user's post list.
           var updates = {};
           updates["/User/" + user.uid + "/paid/" + '/img/'] = this.state.img;
-          return firebase.database().ref().update(updates);
+          updates["/User/" + user.uid + "/paid/" + '/status/'] = 1;
+          firebase.database().ref().update(updates);
+          window.location.href = "/status";
         });
     } else {
       window.location.href = "/sign-in";
