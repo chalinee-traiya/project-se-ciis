@@ -80,7 +80,6 @@ export default class App extends React.Component {
             <Route path="/status" component={Status} />
             <Route path="/payment" component={Payment} />
             <Route path="/edit" component={Edit} />
-            <Route path="/forget" component={FORGET} />
           </Switch>
           {/* <Switch>
             <Route exact path='/' component={Edit} />
