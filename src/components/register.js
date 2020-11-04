@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // import { Form } from 'semantic-ui-react'
-import "./register.css";
-import firebase from "firebase";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import './register.css';
+import firebase from 'firebase';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 export default class register extends Component {
   constructor() {
@@ -16,6 +16,8 @@ export default class register extends Component {
       password: "",
       cpassword: "",
       uid: "",
+      nation: "",
+      type: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,9 +36,10 @@ export default class register extends Component {
     //     this.state.password +
     //     this.state.cpassword
     // );
+    // console.log(this.state.select);
     try {
       if (this.state.password != this.state.cpassword) {
-        alert("รหัสผ่านไม่ตรงกัน");
+        alert('รหัสผ่านไม่ตรงกัน');
       } else {
         firebase
           .auth()
@@ -46,26 +49,29 @@ export default class register extends Component {
             await this.setState({
               uid: user.user.uid,
             });
-          }).then(()=>{
+          })
+          .then(() => {
             console.log(this.state.uid);
             firebase
-            .database()
-            .ref("User")
-            .child(this.state.uid)
-            .set({
-              fname: this.state.fname,
-              lname: this.state.lname,
-              id: this.state.id,
-              email: this.state.email,
-              username: this.state.username,
-              is_admin: "",
-              paid: {
-                status: true,
-                timestamp: "",
-                img: "",
-              },
-            });
-          alert("สมัครสำเร็จ !");
+              .database()
+              .ref("User")
+              .child(this.state.uid)
+              .set({
+                fname: this.state.fname,
+                lname: this.state.lname,
+                id: this.state.id,
+                email: this.state.email,
+                username: this.state.username,
+                is_admin: "",
+                paid: {
+                  status: 0,
+                  timestamp: "",
+                  img: "",
+                },
+                nation: this.state.nation,
+                type: this.state.type,
+              });
+            alert("สมัครสำเร็จ !");
           })
           .catch((error) => {
             // Handle Errors here.
@@ -91,13 +97,13 @@ export default class register extends Component {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <img src="/images/register.png" width="30px" />
-                  <Link className="nav-link" to={"/register"}>
+                  <Link className="nav-link" to={'/register'}>
                     REGISTER
                   </Link>
                 </li>
                 <li className="nav-item">
                   <img src="/images/login.png" width="30px" />
-                  <Link className="nav-link" to={"/sign-in"}>
+                  <Link className="nav-link" to={'/sign-in'}>
                     LOGIN
                   </Link>
                 </li>
@@ -128,7 +134,9 @@ export default class register extends Component {
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadio1"
-                    value="option1"
+                    value="Thai"
+                    onChange={this.handleChange}
+                    name="nation"
                   />
                   <label class="form-check-label" for="inlineRadio1">
                     Thai
@@ -140,7 +148,9 @@ export default class register extends Component {
                     type="radio"
                     name="inlineRadioOptions"
                     id="inlineRadio2"
-                    value="option2"
+                    value="Foreign"
+                    onChange={this.handleChange}
+                    name="nation"
                   />
                   <label class="form-check-label" for="inlineRadio2">
                     Foreign
@@ -155,7 +165,7 @@ export default class register extends Component {
                 <input
                   type="text"
                   class="form-control"
-                  placeholder="ex.1103702411xxx....."
+                  placeholder="1103702411xxx"
                   onChange={this.handleChange}
                   name="id"
                 />
@@ -163,24 +173,28 @@ export default class register extends Component {
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
-                <label for="first-name">First Name *</label>
+                <label for="first-name">
+                  First Name <span>*</span>
+                </label>
                 <input
                   type="first-name"
                   class="form-control"
                   id="first-name"
-                  placeholder="Your First-Name - ex.Chalinee......"
+                  placeholder="Chalinee"
                   onChange={this.handleChange}
                   name="fname"
                 />
               </div>
 
               <div class="form-group col-md-6">
-                <label for="last-name">Last Name *</label>
+                <label for="last-name">
+                  Last Name <span>*</span>
+                </label>
                 <input
                   type="last-name"
                   class="form-control"
                   id="last-name"
-                  placeholder="Your Last-Name - ex.Traiyapanjawit......"
+                  placeholder="Traiyapanjawit"
                   onChange={this.handleChange}
                   name="lname"
                 />
@@ -189,7 +203,9 @@ export default class register extends Component {
 
             <div class="form-row">
               <div class="form-group col-md-6 ">
-                <label for="input-email">Email *</label>
+                <label for="input-email">
+                  Email <span>*</span>
+                </label>
                 <input
                   type="email"
                   class="form-control"
@@ -208,14 +224,15 @@ export default class register extends Component {
                   id="inputState"
                   class="form-controldrop"
                   onChange={this.handleChange}
-                  name="select"
+                  name="type"
+                  required
                 >
                   <option selected>Choose ...</option>
-                  <option>Author / Regular Full Paper (Thai Only)</option>
-                  <option>Author / Virtual Full Paper(Thai & Foreign)</option>
-                  <option>Author / Regular Short Paper (Thai Only)</option>
-                  <option>Author / Virtual Short Paper (Thai & Foreign)</option>
-                  <option>Participant (Thai Only)</option>
+                  <option value="1">Author / Regular Full Paper (Thai Only)</option>
+                  <option value="2">Author / Virtual Full Paper(Thai & Foreign)</option>
+                  <option value="3">Author / Regular Short Paper (Thai Only)</option>
+                  <option value="4">Author / Virtual Short Paper (Thai & Foreign)</option>
+                  <option value="5">Participant (Thai Only)</option>
                 </select>
               </div>
             </div>
@@ -228,7 +245,7 @@ export default class register extends Component {
                 type="username"
                 class="form-control"
                 id="inputusername"
-                placeholder="ex.chalinee......"
+                placeholder="chalinee1234"
                 onChange={this.handleChange}
                 name="username"
               />
@@ -242,7 +259,7 @@ export default class register extends Component {
                 type="password"
                 class="form-control"
                 id="inputpassword"
-                placeholder="ex.Chalinee1234....."
+                placeholder="••••••••"
                 onChange={this.handleChange}
                 name="password"
               />
@@ -256,7 +273,7 @@ export default class register extends Component {
                 type="password"
                 class="form-control"
                 id="inputconfirm"
-                placeholder="Chalinee1234......"
+                placeholder="••••••••"
                 onChange={this.handleChange}
                 name="cpassword"
               />
@@ -270,7 +287,7 @@ export default class register extends Component {
 
             <p className="have-account">
               You have an account?
-              <Link to={"/sign-in"}>
+              <Link to={'/sign-in'}>
                 <a href="#">Sign In</a>
               </Link>
             </p>

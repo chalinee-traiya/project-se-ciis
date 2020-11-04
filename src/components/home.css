@@ -11,6 +11,11 @@
     width: 100%;
   }
   
+.container {
+  position: relative;
+  left: 0;
+}
+
   .navigation {
     display: flex;
     justify-content: space-between;
@@ -67,7 +72,8 @@
   
   .content {
     display: block;
-    justify-content: center;
+    justify-content: flex-start;
+
   }
   
   .section_bottom {
