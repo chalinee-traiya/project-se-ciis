@@ -16,7 +16,6 @@ import Register from './components/register';
 import Status from './components/Status_page';
 import Payment from './components/Payment';
 import Edit from './components/Edit';
-import FORGET from './components/Forget';
 import Home from './components/PaymentP';
 
 import { ReturnAdmin } from './components/login';
@@ -79,7 +78,6 @@ export default class App extends React.Component {
             <Route path="/status" component={Status} />
             <Route path="/payment" component={Payment} />
             <Route path="/edit" component={Edit} />
-            <Route path="/forget" component={FORGET} />
           </Switch>
           {/* <Switch>
             <Route exact path='/' component={Edit} />
