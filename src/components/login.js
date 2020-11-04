@@ -3,40 +3,37 @@ import "./login.css";
 import { signin } from "../helpers/auth";
 import firebase from "firebase";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { auth, db, checkAdmin } from '../services/firebase';
-
+import { auth, db, checkAdmin } from "../services/firebase";
 
 export function ReturnAdmin(isAdmin) {
   if (isAdmin) {
-    console.log("I'm called")
-    return isAdmin
+    console.log("I'm called");
+    return isAdmin;
   }
 }
 export default class Login extends Component {
-
-
-
-
   constructor() {
     super();
     this.state = {
       error: null,
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+  repass(event) {
+   
+  }
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     });
   }
 
   async handleSubmit(event) {
     event.preventDefault();
-    this.setState({ error: '' });
+    this.setState({ error: "" });
     try {
       await signin(this.state.email, this.state.password);
     } catch (error) {
@@ -52,10 +49,9 @@ export default class Login extends Component {
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(
-
           async (user) => {
             var user = firebase.auth().currentUser.uid;
-            localStorage.setItem("UID-login", user)
+            localStorage.setItem("UID-login", user);
             if (user != null) {
               // db.ref('Admin/').on("value", snapshot => {
               //   snapshot.forEach((snap) => {
@@ -65,8 +61,6 @@ export default class Login extends Component {
               //       console.log("I'm Admin")
               //       this.setState({ isAdmin: true })
 
-
-
               //     }
               //     else {
               //       console.log("Not admin")
@@ -74,11 +68,8 @@ export default class Login extends Component {
               //   })
 
               // })
-              window.location.href = '/Status'
-
-            }
-            else {
-
+              window.location.href = "/Status";
+            } else {
               alert("else");
             }
           },
