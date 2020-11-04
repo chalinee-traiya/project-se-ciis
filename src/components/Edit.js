@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Navbar from "../sidebar/Navbar";
-
 import firebase from "firebase";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
