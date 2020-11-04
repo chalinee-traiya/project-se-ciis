@@ -12,16 +12,18 @@ export default class register extends Component {
       lname: "",
       id: "",
       email: "",
+      username: "",
       password: "",
       cpassword: "",
       uid: "",
+      nation: "",
+      type: "",
     };
     this.handleChange = this.handleChange.bind(this);
-    // this.test = this.test.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value });
+    // this.setState({ [evt.target.name]: evt.target.value });
   }
   handleSubmit(event) {
     var user = firebase.auth().currentUser;
@@ -35,47 +37,64 @@ export default class register extends Component {
     //     this.state.cpassword
     // );
     // console.log(this.state.select);
-    if (this.state.id.length == 13) {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then(async (user) => {
-          console.log(user.user.uid);
-          await this.setState({
-            uid: user.user.uid,
-          });
-        })
-        .then(() => {
-          console.log(this.state.uid);
-          firebase
-            .database()
-            .ref("User")
-            .child(this.state.uid)
-            .set({
-              fname: this.state.fname,
-              lname: this.state.lname,
-              id: this.state.id,
-              email: this.state.email,
-              is_admin: 0,
-              paid: {
-                status: 0,
-                timestamp: "",
-                img: "",
-              },
-              nation: "Thai",
+    firebase
+      .database()
+      .ref("/Check/")
+      .once("value")
+      .then((snapshot) => {
+        // console.log(snapshot.val());
+        try {
+          if (this.state.password != this.state.cpassword) {
+            alert("รหัสผ่านไม่ตรงกัน");
+          } else {
+            snapshot.forEach((element) => {
+              if (element.Email == this.state.email) {
+                firebase
+                  .auth()
+                  .createUserWithEmailAndPassword(
+                    this.state.email,
+                    this.state.password
+                  )
+                  .then(async (user) => {
+                    console.log(user.user.uid);
+                    await this.setState({
+                      uid: user.user.uid,
+                    });
+                  })
+                  .then(() => {
+                    console.log(this.state.uid);
+                    firebase
+                      .database()
+                      .ref("User")
+                      .child(this.state.uid)
+                      .set({
+                        fname: this.state.fname,
+                        lname: this.state.lname,
+                        id: this.state.id,
+                        email: this.state.email,
+                        username: this.state.username,
+                        is_admin: "",
+                        paid: {
+                          status: 0,
+                          timestamp: "",
+                          img: "",
+                        },
+                        nation: this.state.nation,
+                        type: "",
+                      });
+                    alert("สมัครสำเร็จ !");
+                  })
+                  .catch((error) => {
+                    // Handle Errors here.
+                    alert(error);
+                  });
+              }
             });
-          alert("สมัครสำเร็จ !");
-          // window.location.href = "/sign-in"
-        })
-        .catch((error) => {
-          // Handle Errors here.
-          alert(error);
-        });
-    }
-    else{
-      alert("กรุณากรอกเลขบัตรประชาชนใหม่");
-    }
-
+          }
+        } catch (err) {
+          alert(err);
+        }
+      });
     event.preventDefault();
   }
 
@@ -116,6 +135,42 @@ export default class register extends Component {
 
             <div class="form-row">
               <div class="form-group col-md-6">
+                <div>
+                  <label for="inputEmail4">
+                    Nationality <span>*</span>
+                  </label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio1"
+                    value="Thai"
+                    onChange={this.handleChange}
+                    name="nation"
+                  />
+                  <label class="form-check-label" for="inlineRadio1">
+                    Thai
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio2"
+                    value="Foreign"
+                    onChange={this.handleChange}
+                    name="nation"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">
+                    Foreign
+                  </label>
+                </div>
+              </div>
+              <div class="form-group col-md-6">
                 <label for="id">
                   ID Card / Passport No.<span>*</span>
                 </label>
@@ -143,9 +198,7 @@ export default class register extends Component {
                   name="fname"
                 />
               </div>
-              <br />
-            </div>
-            <div class="form-row">
+
               <div class="form-group col-md-6">
                 <label for="last-name">
                   Last Name <span>*</span>
@@ -159,8 +212,8 @@ export default class register extends Component {
                   name="lname"
                 />
               </div>
-              <br />
             </div>
+
             <div class="form-row">
               <div class="form-group col-md-6 ">
                 <label for="input-email">
@@ -175,7 +228,50 @@ export default class register extends Component {
                   name="email"
                 />
               </div>
+
+              <div class="form-group col-md-6">
+                <label for="inputState">
+                  Type identity verification <span>*</span>
+                </label>
+                <select
+                  id="inputState"
+                  class="form-controldrop"
+                  onChange={this.handleChange}
+                  name="type"
+                  required
+                >
+                  <option selected>Choose ...</option>
+                  <option value="1">
+                    Author / Regular Full Paper (Thai Only)
+                  </option>
+                  <option value="2">
+                    Author / Virtual Full Paper(Thai & Foreign)
+                  </option>
+                  <option value="3">
+                    Author / Regular Short Paper (Thai Only)
+                  </option>
+                  <option value="4">
+                    Author / Virtual Short Paper (Thai & Foreign)
+                  </option>
+                  <option value="5">Participant (Thai Only)</option>
+                </select>
+              </div>
             </div>
+
+            <div class="form-group">
+              <label for="inputusername">
+                Create Username <span>*</span>
+              </label>
+              <input
+                type="username"
+                class="form-control"
+                id="inputusername"
+                placeholder="chalinee1234"
+                onChange={this.handleChange}
+                name="username"
+              />
+            </div>
+
             <div class="form-group">
               <label for="inputpassword">
                 Create Password <span>*</span>
