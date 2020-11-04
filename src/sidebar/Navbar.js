@@ -58,9 +58,9 @@ function Navbar() {
           </ul>
         </nav>
       </IconContext.Provider>
-      {/* <div className="status-content">
+      <div className="status-content">
         <Image src=".../public/images/head.png" fluid />
-      </div> */}
+      </div>
     </>
   );
 }

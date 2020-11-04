@@ -23,7 +23,7 @@ export default class Login extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   repass(event) {
-
+   
   }
   handleChange(event) {
     this.setState({
@@ -145,7 +145,7 @@ export default class Login extends Component {
             />
 
             <p className="forgot-password text-right">
-              Forgot <a href="/forget">password?</a>
+              Forgot <a href="#">password?</a>
             </p>
 
             {/* <Link to="/status">

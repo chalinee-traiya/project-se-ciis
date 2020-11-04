@@ -12,76 +12,91 @@ export default class register extends Component {
       lname: "",
       id: "",
       email: "",
-      username: "",
       password: "",
       cpassword: "",
       uid: "",
-      nation: "",
-      type: "",
     };
     this.handleChange = this.handleChange.bind(this);
+    // this.test = this.test.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  test(){
+    var credential = firebase.auth.EmailAuthProvider.credentialWithLink(
+      "zigzagzagzac@gmail.com", window.location.href);
+
+  // Link the credential to the current user.
+  firebase.auth().currentUser.linkWithCredential(credential)
+    .then(function(usercred) {
+      console.log("123");
+      // The provider is now successfully linked.
+      // The phone user can now sign in with their phone number or email.
+    })
+    .catch(function(error) {
+      // Some error occurred.
+    });
   }
   handleChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
   }
   handleSubmit(event) {
     var user = firebase.auth().currentUser;
-    try {
-      if (this.state.password != this.state.cpassword) {
-        alert("รหัสผ่านไม่ตรงกัน");
-      } else {
-        if (this.state.id.length == 13) {
-          alert(this.state.id.length);
+    // console.log(
+    //    this.state.fname +
+    //     this.state.lname +
+    //     this.state.id +
+    //     this.state.email +
+    //     this.state.username +
+    //     this.state.password +
+    //     this.state.cpassword
+    // );
+    // console.log(this.state.select);
+    if (this.state.id.length == 13) {
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(this.state.email, this.state.password)
+        .then(async (user) => {
+          console.log(user.user.uid);
+          await this.setState({
+            uid: user.user.uid,
+          });
+        })
+        .then(() => {
+          console.log(this.state.uid);
           firebase
-            .auth()
-            .createUserWithEmailAndPassword(
-              this.state.email,
-              this.state.password
-            )
-            .then(async (user) => {
-              console.log(user.user.uid);
-              await this.setState({
-                uid: user.user.uid,
-              });
-            })
-            .then(() => {
-              console.log(this.state.uid);
-              firebase
-                .database()
-                .ref("User")
-                .child(this.state.uid)
-                .set({
-                  fname: this.state.fname,
-                  lname: this.state.lname,
-                  id: this.state.id,
-                  email: this.state.email,
-                  is_admin: "",
-                  paid: {
-                    status: 0,
-                    timestamp: "",
-                    img: "",
-                  },
-                  nation: "Thai",
-                  type: 5,
-                });
-              alert("สมัครสำเร็จ !");
-            })
-            .catch((error) => {
-              // Handle Errors here.
-              alert(error);
+            .database()
+            .ref("User")
+            .child(this.state.uid)
+            .set({
+              fname: this.state.fname,
+              lname: this.state.lname,
+              id: this.state.id,
+              email: this.state.email,
+              is_admin: 0,
+              paid: {
+                status: 0,
+                timestamp: "",
+                img: "",
+              },
+              nation: "Thai",
             });
-        }
-      }
-    } catch (err) {
-      alert(err);
+          alert("สมัครสำเร็จ !");
+          window.location.href = "/sign-in"
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          alert(error);
+        });
     }
+    else{
+      alert("กรุณากรอกเลขบัตรประชาชนใหม่");
+    }
+
     event.preventDefault();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.test}>
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
             <a href="/">
@@ -107,6 +122,13 @@ export default class register extends Component {
         </nav>
         <div className="auth-wrapper">
           <div className="auth-inner">
+            <div>
+              <h1>Register</h1>
+              <div className="under-register">
+                <p>Register on the platform </p>
+              </div>
+            </div>
+
             <div class="form-row">
               <div class="form-group col-md-6">
                 <label for="id">
@@ -136,6 +158,7 @@ export default class register extends Component {
                   name="fname"
                 />
               </div>
+              <br />
             </div>
             <div class="form-row">
               <div class="form-group col-md-6">
@@ -151,6 +174,7 @@ export default class register extends Component {
                   name="lname"
                 />
               </div>
+              <br />
             </div>
             <div class="form-row">
               <div class="form-group col-md-6 ">
@@ -167,10 +191,9 @@ export default class register extends Component {
                 />
               </div>
             </div>
-
             <div class="form-group">
               <label for="inputpassword">
-                Password <span>*</span>
+                Create Password <span>*</span>
               </label>
               <input
                 type="password"
