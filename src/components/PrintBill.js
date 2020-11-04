@@ -1,9 +1,10 @@
 import React from 'react'
 import Printer, { print } from 'react-pdf-print'
 
+
 const ids = ['1']
 
-function PrintTicket() {
+function PrintBill() {
     return (
         <>
         <Printer>
@@ -18,4 +19,4 @@ function PrintTicket() {
     )
 }
 
-export default PrintTicket
+export default PrintBill

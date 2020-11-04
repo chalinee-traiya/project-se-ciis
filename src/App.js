@@ -16,6 +16,7 @@ import Register from './components/register';
 import Status from './components/Status_page';
 import Payment from './components/Payment';
 import Edit from './components/Edit';
+import Form from './components/form/form';
 import FORGET from './components/Forget';
 import Home from './components/PaymentP';
 
@@ -73,7 +74,7 @@ export default class App extends React.Component {
 
           {/* {this.isAdmin?  */}
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={Form} />
             <Route path="/sign-in" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/status" component={Status} />

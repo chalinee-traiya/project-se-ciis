@@ -6,6 +6,7 @@ import Button from "@material-ui/core/Button";
 import ConfirmationNumberIcon from "@material-ui/icons/ConfirmationNumber";
 import firebase from "firebase";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import PrintBill from "./PrintBill";
 // const useStyles = makeStyles((theme) => ({
 //   button: {
 //     margin: theme.spacing(1),
@@ -109,6 +110,7 @@ class Status extends React.Component {
               onClick={this.check}
             >
               Ticket
+              {/* <PrintBill/> */}
             </Button>
           </div>
         </div>
