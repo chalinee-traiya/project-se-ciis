@@ -18,16 +18,6 @@ export default class btnpayment extends React.Component {
 
     img: "",
   };
-
-  test = () => {
-    // var jsPDF = require('jspdf');
-    // // Update the state
-    // var doc = new jsPDF();
-    // doc.fromHTML($('#MainPDF')[0],20 ,20);
-    // doc.save("test.pdf");
-    // app.js
-    console.log("123");
-  };
   onFileUpload = () => {
     var user = firebase.auth().currentUser;
     console.log(user.uid);
