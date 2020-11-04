@@ -21,6 +21,11 @@ export default class btnpayment extends React.Component {
 
   onFileChange = (event) => {
     // Update the state
+    var element = document.getElementById("element-to-print");
+    html2pdf(element);
+  };
+  test = (event) => {
+    // Update the state
     this.setState({ selectedFile: event.target.files[0] });
   };
   onFileUpload = () => {
@@ -56,8 +61,8 @@ export default class btnpayment extends React.Component {
         .then(() => {
           // Write the new post's data simultaneously in the posts list and the user's post list.
           var updates = {};
-          updates["/User/" + user.uid + "/paid/" + '/img/'] = this.state.img;
-          updates["/User/" + user.uid + "/paid/" + '/status/'] = 1;
+          updates["/User/" + user.uid + "/paid/" + "/img/"] = this.state.img;
+          updates["/User/" + user.uid + "/paid/" + "/status/"] = 1;
           firebase.database().ref().update(updates);
           window.location.href = "/status";
         });
@@ -71,9 +76,11 @@ export default class btnpayment extends React.Component {
       <div>
         {/* <input type="file" onChange={this.onFileChange} /> */}
         <input type="file" id="files" name="files[]" multiple />
-
+        <div id="element-to-print">
+          <h1>Our Invoice</h1>
+        </div>
         <Button
-          onClick={this.onFileUpload}
+          onClick={this.test}
           variant="contained"
           color="default"
           className={this.useStyles.button}
