@@ -20,21 +20,6 @@ export default class register extends Component {
     // this.test = this.test.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  test(){
-    var credential = firebase.auth.EmailAuthProvider.credentialWithLink(
-      "zigzagzagzac@gmail.com", window.location.href);
-
-  // Link the credential to the current user.
-  firebase.auth().currentUser.linkWithCredential(credential)
-    .then(function(usercred) {
-      console.log("123");
-      // The provider is now successfully linked.
-      // The phone user can now sign in with their phone number or email.
-    })
-    .catch(function(error) {
-      // Some error occurred.
-    });
-  }
   handleChange(evt) {
     this.setState({ [evt.target.name]: evt.target.value });
   }
@@ -80,7 +65,7 @@ export default class register extends Component {
               nation: "Thai",
             });
           alert("สมัครสำเร็จ !");
-          window.location.href = "/sign-in"
+          // window.location.href = "/sign-in"
         })
         .catch((error) => {
           // Handle Errors here.
@@ -96,7 +81,7 @@ export default class register extends Component {
 
   render() {
     return (
-      <form onSubmit={this.test}>
+      <form onSubmit={this.handleSubmit}>
         <nav className="navbar navbar-expand-lg navbar-light fixed-top">
           <div className="container">
             <a href="/">
