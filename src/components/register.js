@@ -22,18 +22,6 @@ export default class register extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  test() {
-    firebase
-      .database()
-      .ref("/Check/")
-      .once("value")
-      .then((snapshot) => {
-        console.log(snapshot.val());
-        // var username =
-        //   (snapshot.val() && snapshot.val().username) || "Anonymous";
-        // // ...
-      });
-  }
   handleChange(evt) {
     // this.setState({ [evt.target.name]: evt.target.value });
   }
@@ -107,7 +95,6 @@ export default class register extends Component {
           alert(err);
         }
       });
-
     event.preventDefault();
   }
 
