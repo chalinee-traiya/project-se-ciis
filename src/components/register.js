@@ -61,6 +61,8 @@ export default class register extends Component {
                     status: 0,
                     timestamp: "",
                     img: "",
+                    price:0,
+                    type:0
                   },
                   nation: "Thai",
                   type: 5,

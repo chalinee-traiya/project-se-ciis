@@ -20,6 +20,10 @@ class Status extends React.Component {
       email: "",
       password: "",
       paid: "",
+      paper_name: "",
+      paper_id: "",
+      head1:"",
+      head2:""
     };
   }
 
@@ -34,31 +38,62 @@ class Status extends React.Component {
           localStorage.setItem("fname", snapshot.val().fname);
           localStorage.setItem("lname", snapshot.val().lname);
           this.setState({
-            email: snapshot.val().lname
+            email: snapshot.val().email,
           });
-          if (snapshot.val().paid.status == 0) {
+          if(snapshot.val().type == 5){
             this.setState({
-              paid: "ยังไม่จ่าย",
+              head1: "Type",
+              head2: "Price",
             });
-          } else {
-            if (snapshot.val().paid.status == 1) {
+          }else{
+            this.setState({
+              head1: "Research ID",
+              head2: "Research Name",
+            });
+          }
+          alert(snapshot.val().paid.choose);
+          if(snapshot.val().paid.choose == ""){
+            this.setState({
+              paper_id: "-",
+              paper_name: "-",
+            });
+          }else{
+            this.setState({
+              head1: "Research ID",
+              head2: "Research Name",
+            });
+          }
+          if (snapshot.val().paid.type != 0) {
+            if (snapshot.val().paid.status == 0) {
               this.setState({
-                paid: "รอตรวจสอบ",
+                paid: "ยังไม่จ่าย",
               });
             } else {
-              if (snapshot.val().paid.status == 2) {
+              if (snapshot.val().paid.status == 1) {
                 this.setState({
-                  paid: "จ่ายแล้ว",
+                  paid: "รอตรวจสอบ",
                 });
               } else {
-                if (snapshot.val().paid.status == 3) {
+                if (snapshot.val().paid.status == 2) {
                   this.setState({
-                    paid: "ยกเลิก",
+                    paid: "จ่ายแล้ว",
                   });
+                } else {
+                  if (snapshot.val().paid.status == 3) {
+                    this.setState({
+                      paid: "ยกเลิก",
+                    });
+                  }
                 }
               }
             }
           }
+          else{
+            this.setState({
+              paid: "-",
+            });
+          }
+
           // var username =
           //   (snapshot.val() && snapshot.val().username) || "Anonymous";
           // // ...
@@ -68,13 +103,17 @@ class Status extends React.Component {
         .ref("/usersCSV/")
         .once("value")
         .then((snapshot) => {
-          snapshot.forEach(element => {
-            console.log(element.val().email);
-            if(element.val().email == this.state.email){
-              
+          snapshot.forEach((element) => {
+            // console.log(element.val().email);
+            // console.log(this.state.email);
+            if (element.val().email == this.state.email) {
+              this.setState({
+                paper_name: element.val().paper_name,
+                paper_id: element.val().paper_id,
+              });
+              console.log(this.state.paper_name, this.state.paper_id);
             }
           });
-
         });
     } else {
       window.location.href = "/sign-in";
@@ -101,15 +140,15 @@ class Status extends React.Component {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Research ID</th>
-                <th>Research Name</th>
+                <th>{this.state.head1}</th>
+                <th>{this.state.head2}</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>000000</td>
-                <td>Register</td>
+                <td>{this.state.paper_id}</td>
+                <td>{this.state.paper_name}</td>
                 <td>{this.state.paid}</td>
               </tr>
             </tbody>

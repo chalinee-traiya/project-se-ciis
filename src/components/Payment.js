@@ -22,6 +22,7 @@ class Payment extends React.Component {
         .ref("/User/" + user.uid)
         .once("value")
         .then((snapshot) => {
+
           if (snapshot.val().paid.status == 0) {
             this.setState({
               paid: "ยังไม่จ่าย",
@@ -61,30 +62,8 @@ class Payment extends React.Component {
     isPayment: false,
     paid: "",
   };
-  onFileChange = (event) => {
-    // Update the state
-    this.setState({ selectedFile: event.target.files[0] });
-  };
-  onFileUpload = () => {
-    // this.setState({isPayment: !this.state.isPayment})
-    console.log(this.isPayment);
-    //   // Create an object of formData
-    //   const formData = new FormData();
 
-    //   // Update the formData object
-    //   formData.append(
-    //     "myFile",
-    //     this.state.selectedFile,
-    //     this.state.selectedFile.name
-    //   );
 
-    //   // Details of the uploaded file
-    //   console.log(this.state.selectedFile);
-
-    //   // Request made to the backend api
-    //   // Send formData object
-    //   // axios.post("api/uploadfile", formData);
-  };
   onClickBtn = () => {
     this.setState({ isPayment: !this.state.isPayment });
   };
