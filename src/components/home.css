@@ -16,6 +16,12 @@
   left: 0;
 }
 
+.bottom_left {
+  width: 350px;
+  height: 10%;
+
+}
+
   .navigation {
     display: flex;
     justify-content: space-between;
@@ -78,11 +84,13 @@
   
   .section_bottom {
     display: flex;
+    width: 100%;
+    height: 10%;
   }
   
   .image-title {
     width: 100%;
-    height: 230px;
+    height: 10%;
     padding-top: 80px;
     
     position: center;
@@ -90,8 +98,9 @@
   }
   
   .image-timeline {
-    height: 350px;
-    width: 250px;
+    width: 100%;
+    height: 100%;
+    
   }
   
   .bottom_right {
@@ -101,6 +110,7 @@
     letter-spacing: 0.1px;
     padding: 4rem;
     display: block;
+    width: 100vw;
   }
   
   .right_title {
@@ -110,7 +120,7 @@
   
   .footer {
     width: 100%;
-    height: 40px;
+    height: 5%;
     
     position: center;
     
