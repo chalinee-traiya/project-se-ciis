@@ -67,7 +67,7 @@ export default class Login extends Component {
               //   })
 
               // })
-              window.location.href = "/Status";
+              window.location.href = "/status";
             } else {
               alert("else");
             }
@@ -76,7 +76,7 @@ export default class Login extends Component {
             alert(err.message);
           }
         );
-      
+
       event.preventDefault();
     } catch (err) {
       // alert(err);

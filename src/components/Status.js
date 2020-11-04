@@ -33,6 +33,9 @@ class Status extends React.Component {
         .then((snapshot) => {
           localStorage.setItem("fname", snapshot.val().fname);
           localStorage.setItem("lname", snapshot.val().lname);
+          this.setState({
+            email: snapshot.val().lname
+          });
           if (snapshot.val().paid.status == 0) {
             this.setState({
               paid: "ยังไม่จ่าย",
@@ -59,8 +62,18 @@ class Status extends React.Component {
           // var username =
           //   (snapshot.val() && snapshot.val().username) || "Anonymous";
           // // ...
-        })
-        .then(() => {
+        });
+      firebase
+        .database()
+        .ref("/usersCSV/")
+        .once("value")
+        .then((snapshot) => {
+          snapshot.forEach(element => {
+            console.log(element.val().email);
+            if(element.val().email == this.state.email){
+              
+            }
+          });
 
         });
     } else {
@@ -71,7 +84,6 @@ class Status extends React.Component {
     if (this.state.paid != "จ่ายแล้ว") {
       alert(this.state.paid);
     } else {
-
     }
   };
   render() {
@@ -85,8 +97,7 @@ class Status extends React.Component {
           </div>
         </nav> */}
         <Navbar />
-        <div className="Status">
-
+        <div class="Status col-8 mx-auto mt-5">
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -99,7 +110,7 @@ class Status extends React.Component {
               <tr>
                 <td>000000</td>
                 <td>Register</td>
-      <td>{this.state.paid}</td>
+                <td>{this.state.paid}</td>
               </tr>
             </tbody>
           </Table>
