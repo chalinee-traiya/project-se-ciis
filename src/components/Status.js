@@ -20,10 +20,10 @@ class Status extends React.Component {
       email: "",
       password: "",
       paid: "",
-      paper_name: "",
-      paper_id: "",
-      head1:"",
-      head2:""
+      col1: "",
+      col2: "",
+      head1: "",
+      head2: "",
     };
   }
 
@@ -40,28 +40,32 @@ class Status extends React.Component {
           this.setState({
             email: snapshot.val().email,
           });
-          if(snapshot.val().type == 5){
+          if (snapshot.val().type == 5) {
             this.setState({
               head1: "Type",
               head2: "Price",
+              col1: "On-site-Participant",
+              col2: 2000,
             });
-          }else{
-            this.setState({
-              head1: "Research ID",
-              head2: "Research Name",
-            });
-          }
-          alert(snapshot.val().paid.choose);
-          if(snapshot.val().paid.choose == ""){
-            this.setState({
-              paper_id: "-",
-              paper_name: "-",
-            });
-          }else{
-            this.setState({
-              head1: "Research ID",
-              head2: "Research Name",
-            });
+          } else {
+            firebase
+              .database()
+              .ref("/usersCCSV/")
+              .once("value")
+              .then((snapshot) => {
+                snapshot.forEach((element) => {
+                  console.log(element.val().type);
+                  if (element.val().email == this.state.email) {
+                    this.setState({
+                      head1: "Research ID",
+                      head2: "Research Name",
+                      col1: element.val().type,
+                      col2: element.val().af_price,
+                    });
+                  }
+
+                });
+              });
           }
           if (snapshot.val().paid.type != 0) {
             if (snapshot.val().paid.status == 0) {
@@ -87,8 +91,7 @@ class Status extends React.Component {
                 }
               }
             }
-          }
-          else{
+          } else {
             this.setState({
               paid: "-",
             });
@@ -147,8 +150,8 @@ class Status extends React.Component {
             </thead>
             <tbody>
               <tr>
-                <td>{this.state.paper_id}</td>
-                <td>{this.state.paper_name}</td>
+                <td>{this.state.col1}</td>
+                <td>{this.state.col2}</td>
                 <td>{this.state.paid}</td>
               </tr>
             </tbody>
