@@ -26,13 +26,11 @@ export default class register extends Component {
     this.setState({ [evt.target.name]: evt.target.value });
   }
   handleSubmit(event) {
-    alert("123");
     var user = firebase.auth().currentUser;
     try {
       if (this.state.password != this.state.cpassword) {
         alert("รหัสผ่านไม่ตรงกัน");
       } else {
-        alert(this.state.id.length);
         if (this.state.id.length == 13) {
           alert(this.state.id.length);
           firebase
