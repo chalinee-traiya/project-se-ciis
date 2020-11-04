@@ -19,14 +19,14 @@ export default class btnpayment extends React.Component {
     img: "",
   };
 
-  onFileChange = (event) => {
-    // Update the state
-    var element = document.getElementById("element-to-print");
-    html2pdf(element);
-  };
-  test = (event) => {
-    // Update the state
-    this.setState({ selectedFile: event.target.files[0] });
+  test = () => {
+    // var jsPDF = require('jspdf');
+    // // Update the state
+    // var doc = new jsPDF();
+    // doc.fromHTML($('#MainPDF')[0],20 ,20);
+    // doc.save("test.pdf");
+    // app.js
+    console.log("123");
   };
   onFileUpload = () => {
     var user = firebase.auth().currentUser;
@@ -75,10 +75,13 @@ export default class btnpayment extends React.Component {
     return (
       <div>
         {/* <input type="file" onChange={this.onFileChange} /> */}
-        <input type="file" id="files" name="files[]" multiple />
-        <div id="element-to-print">
+        <input type="file" id="files" name="files[]"/>
+        <div id="MainPDF">
           <h1>Our Invoice</h1>
         </div>
+        <div id="content"></div>
+
+        <div id="elementH"></div>
         <Button
           onClick={this.test}
           variant="contained"
