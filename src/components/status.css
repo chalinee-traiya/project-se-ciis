@@ -1,5 +1,6 @@
 .Status {
     display: flex;
+    position: relative;
 }
 
 .App-status-page {

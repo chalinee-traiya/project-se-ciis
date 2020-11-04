@@ -83,8 +83,9 @@ class Status extends React.Component {
             </a>
           </div>
         </nav> */}
+        <Navbar />
         <div className="Status">
-          <Navbar />
+          
           <Table striped bordered hover>
             <thead>
               <tr>
