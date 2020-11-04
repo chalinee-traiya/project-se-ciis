@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 // import { Form } from 'semantic-ui-react'
-import './register.css';
-import firebase from 'firebase';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import "./register.css";
+import firebase from "firebase";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 export default class register extends Component {
   constructor() {
@@ -22,11 +22,11 @@ export default class register extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
   handleChange(evt) {
-    this.setState({ [evt.target.name]: evt.target.value });
+    // this.setState({ [evt.target.name]: evt.target.value });
   }
   handleSubmit(event) {
+    var user = firebase.auth().currentUser;
     // console.log(
     //    this.state.fname +
     //     this.state.lname +
@@ -37,51 +37,64 @@ export default class register extends Component {
     //     this.state.cpassword
     // );
     // console.log(this.state.select);
-    try {
-      if (this.state.password != this.state.cpassword) {
-        alert('รหัสผ่านไม่ตรงกัน');
-      } else {
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.state.email, this.state.password)
-          .then(async (user) => {
-            console.log(user.user.uid);
-            await this.setState({
-              uid: user.user.uid,
+    firebase
+      .database()
+      .ref("/Check/")
+      .once("value")
+      .then((snapshot) => {
+        // console.log(snapshot.val());
+        try {
+          if (this.state.password != this.state.cpassword) {
+            alert("รหัสผ่านไม่ตรงกัน");
+          } else {
+            snapshot.forEach((element) => {
+              if (element.Email == this.state.email) {
+                firebase
+                  .auth()
+                  .createUserWithEmailAndPassword(
+                    this.state.email,
+                    this.state.password
+                  )
+                  .then(async (user) => {
+                    console.log(user.user.uid);
+                    await this.setState({
+                      uid: user.user.uid,
+                    });
+                  })
+                  .then(() => {
+                    console.log(this.state.uid);
+                    firebase
+                      .database()
+                      .ref("User")
+                      .child(this.state.uid)
+                      .set({
+                        fname: this.state.fname,
+                        lname: this.state.lname,
+                        id: this.state.id,
+                        email: this.state.email,
+                        username: this.state.username,
+                        is_admin: "",
+                        paid: {
+                          status: 0,
+                          timestamp: "",
+                          img: "",
+                        },
+                        nation: this.state.nation,
+                        type: "",
+                      });
+                    alert("สมัครสำเร็จ !");
+                  })
+                  .catch((error) => {
+                    // Handle Errors here.
+                    alert(error);
+                  });
+              }
             });
-          })
-          .then(() => {
-            console.log(this.state.uid);
-            firebase
-              .database()
-              .ref("User")
-              .child(this.state.uid)
-              .set({
-                fname: this.state.fname,
-                lname: this.state.lname,
-                id: this.state.id,
-                email: this.state.email,
-                username: this.state.username,
-                is_admin: "",
-                paid: {
-                  status: 0,
-                  timestamp: "",
-                  img: "",
-                },
-                nation: this.state.nation,
-                type: this.state.type,
-              });
-            alert("สมัครสำเร็จ !");
-          })
-          .catch((error) => {
-            // Handle Errors here.
-            alert(error);
-          });
-      }
-    } catch (err) {
-      alert(err);
-    }
-
+          }
+        } catch (err) {
+          alert(err);
+        }
+      });
     event.preventDefault();
   }
 
@@ -97,13 +110,13 @@ export default class register extends Component {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <img src="/images/register.png" width="30px" />
-                  <Link className="nav-link" to={'/register'}>
+                  <Link className="nav-link" to={"/register"}>
                     REGISTER
                   </Link>
                 </li>
                 <li className="nav-item">
                   <img src="/images/login.png" width="30px" />
-                  <Link className="nav-link" to={'/sign-in'}>
+                  <Link className="nav-link" to={"/sign-in"}>
                     LOGIN
                   </Link>
                 </li>
@@ -228,10 +241,18 @@ export default class register extends Component {
                   required
                 >
                   <option selected>Choose ...</option>
-                  <option value="1">Author / Regular Full Paper (Thai Only)</option>
-                  <option value="2">Author / Virtual Full Paper(Thai & Foreign)</option>
-                  <option value="3">Author / Regular Short Paper (Thai Only)</option>
-                  <option value="4">Author / Virtual Short Paper (Thai & Foreign)</option>
+                  <option value="1">
+                    Author / Regular Full Paper (Thai Only)
+                  </option>
+                  <option value="2">
+                    Author / Virtual Full Paper(Thai & Foreign)
+                  </option>
+                  <option value="3">
+                    Author / Regular Short Paper (Thai Only)
+                  </option>
+                  <option value="4">
+                    Author / Virtual Short Paper (Thai & Foreign)
+                  </option>
                   <option value="5">Participant (Thai Only)</option>
                 </select>
               </div>
@@ -287,7 +308,7 @@ export default class register extends Component {
 
             <p className="have-account">
               You have an account?
-              <Link to={'/sign-in'}>
+              <Link to={"/sign-in"}>
                 <a href="#">Sign In</a>
               </Link>
             </p>

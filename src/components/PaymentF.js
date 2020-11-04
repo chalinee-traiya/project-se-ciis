@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import "./payment.css";
 import firebase from "firebase";
 
-class Payment extends React.Component {
+class PaymentF extends React.Component {
   useStyles = makeStyles((theme) => ({
     button: {
       marginTop: 100,
@@ -17,7 +17,7 @@ class Payment extends React.Component {
   async componentDidMount() {
     var user = firebase.auth().currentUser;
     if (user != null) {
-      firebase
+      return firebase
         .database()
         .ref("/User/" + user.uid)
         .once("value")
@@ -28,17 +28,17 @@ class Payment extends React.Component {
               paid: "ยังไม่จ่าย",
             });
           } else {
-            if (snapshot.val().paid.status == 1) {
+            if(snapshot.val().paid.status == 1){
               this.setState({
                 paid: "รอตรวจสอบ",
               });
-            } else {
-              if (snapshot.val().paid.status == 2) {
+            }else{
+              if(snapshot.val().paid.status == 2){
                 this.setState({
                   paid: "จ่ายแล้ว",
                 });
-              } else {
-                if (snapshot.val().paid.status == 3) {
+              }else{
+                if(snapshot.val().paid.status == 3){
                   this.setState({
                     paid: "ยกเลิก",
                   });
@@ -50,7 +50,7 @@ class Payment extends React.Component {
           //   (snapshot.val() && snapshot.val().username) || "Anonymous";
           // // ...
         });
-    } else {
+    }else{
       window.location.href = "/sign-in";
     }
   }
@@ -136,7 +136,7 @@ class Payment extends React.Component {
               />
               <img src="/images/paypal.png" width="80px" />
 
-              <input
+              {/* <input
                 type="radio"
                 id="radio-2"
                 name="myRadio"
@@ -144,7 +144,7 @@ class Payment extends React.Component {
                 checked={this.state.selected === "radio-2"}
                 onChange={(e) => this.setState({ selected: e.target.value })}
               />
-              <img src="/images/tmb.png" width="80px" />
+              <img src="/images/tmb.png" width="80px" /> */}
             </div>
 
             <div>
@@ -164,4 +164,4 @@ class Payment extends React.Component {
   }
 }
 
-export default Payment;
+export default PaymentF;

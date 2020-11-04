@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import "./payment.css";
 import firebase from "firebase";
 
-class Payment extends React.Component {
+class PaymentP extends React.Component {
   useStyles = makeStyles((theme) => ({
     button: {
       marginTop: 100,
@@ -17,7 +17,7 @@ class Payment extends React.Component {
   async componentDidMount() {
     var user = firebase.auth().currentUser;
     if (user != null) {
-      firebase
+      return firebase
         .database()
         .ref("/User/" + user.uid)
         .once("value")
@@ -28,17 +28,17 @@ class Payment extends React.Component {
               paid: "ยังไม่จ่าย",
             });
           } else {
-            if (snapshot.val().paid.status == 1) {
+            if(snapshot.val().paid.status == 1){
               this.setState({
                 paid: "รอตรวจสอบ",
               });
-            } else {
-              if (snapshot.val().paid.status == 2) {
+            }else{
+              if(snapshot.val().paid.status == 2){
                 this.setState({
                   paid: "จ่ายแล้ว",
                 });
-              } else {
-                if (snapshot.val().paid.status == 3) {
+              }else{
+                if(snapshot.val().paid.status == 3){
                   this.setState({
                     paid: "ยกเลิก",
                   });
@@ -50,7 +50,7 @@ class Payment extends React.Component {
           //   (snapshot.val() && snapshot.val().username) || "Anonymous";
           // // ...
         });
-    } else {
+    }else{
       window.location.href = "/sign-in";
     }
   }
@@ -126,7 +126,7 @@ class Payment extends React.Component {
     </div> */}
 
             <div>
-              <input
+              {/* <input
                 type="radio"
                 id="radio-1"
                 name="myRadio"
@@ -134,8 +134,37 @@ class Payment extends React.Component {
                 checked={this.state.selected === "radio-1"}
                 onChange={(e) => this.setState({ selected: e.target.value })}
               />
-              <img src="/images/paypal.png" width="80px" />
+              <img src="/images/paypal.png" width="80px" /> */}
 
+              <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio1"
+                    value="Thai"
+                    onChange={this.handleChange}
+                    name="nation"
+                  />
+                  <label class="form-check-label" for="inlineRadio1">
+                    On-Site Participant
+                  </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="inlineRadioOptions"
+                    id="inlineRadio2"
+                    value="Foreign"
+                    onChange={this.handleChange}
+                    name="nation"
+                  />
+                  <label class="form-check-label" for="inlineRadio2">
+                    On-Site Participant+Banquet
+                  </label>
+                </div>
+              <div>
               <input
                 type="radio"
                 id="radio-2"
@@ -145,6 +174,7 @@ class Payment extends React.Component {
                 onChange={(e) => this.setState({ selected: e.target.value })}
               />
               <img src="/images/tmb.png" width="80px" />
+            </div>
             </div>
 
             <div>
@@ -164,4 +194,4 @@ class Payment extends React.Component {
   }
 }
 
-export default Payment;
+export default PaymentP;
