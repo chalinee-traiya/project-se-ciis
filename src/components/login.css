@@ -1,13 +1,15 @@
 
 .auth-wrapper-log {
     display: flex;
-    margin-top: 150px;
+    width: 100%;
+    height: 100vh;
     justify-content: center;
+    align-items: center;
     flex-direction: column;
     text-align: left;
-  }
+}
   
-  .auth-inner-log {
+.auth-inner-log {
     width: 450px;
     margin: auto;
     background: #ffffff;
@@ -15,7 +17,12 @@
     padding: 40px 55px 45px 55px;
     border-radius: 15px;
     /* transition: all .3s; */
-  }
+}
+
+span {
+  color: red;
+
+}
 
   
 .auth-wrapper .form-control:focus {
