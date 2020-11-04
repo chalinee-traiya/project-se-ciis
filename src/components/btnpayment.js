@@ -18,11 +18,6 @@ export default class btnpayment extends React.Component {
 
     img: "",
   };
-
-  onFileChange = (event) => {
-    // Update the state
-    this.setState({ selectedFile: event.target.files[0] });
-  };
   onFileUpload = () => {
     var user = firebase.auth().currentUser;
     console.log(user.uid);
@@ -56,8 +51,8 @@ export default class btnpayment extends React.Component {
         .then(() => {
           // Write the new post's data simultaneously in the posts list and the user's post list.
           var updates = {};
-          updates["/User/" + user.uid + "/paid/" + '/img/'] = this.state.img;
-          updates["/User/" + user.uid + "/paid/" + '/status/'] = 1;
+          updates["/User/" + user.uid + "/paid/" + "/img/"] = this.state.img;
+          updates["/User/" + user.uid + "/paid/" + "/status/"] = 1;
           firebase.database().ref().update(updates);
           window.location.href = "/status";
         });
@@ -70,10 +65,15 @@ export default class btnpayment extends React.Component {
     return (
       <div>
         {/* <input type="file" onChange={this.onFileChange} /> */}
-        <input type="file" id="files" name="files[]" multiple />
+        <input type="file" id="files" name="files[]"/>
+        <div id="MainPDF">
+          <h1>Our Invoice</h1>
+        </div>
+        <div id="content"></div>
 
+        <div id="elementH"></div>
         <Button
-          onClick={this.onFileUpload}
+          onClick={this.test}
           variant="contained"
           color="default"
           className={this.useStyles.button}
