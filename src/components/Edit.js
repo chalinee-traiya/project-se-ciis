@@ -352,7 +352,7 @@ export default class Edit extends Component {
   componentDidMount() {
     var user = firebase.auth().currentUser;
     if (user != null) {
-      return firebase
+      firebase
         .database()
         .ref("/User/" + user.uid)
         .once("value")

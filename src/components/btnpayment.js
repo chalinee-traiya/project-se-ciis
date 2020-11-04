@@ -15,7 +15,6 @@ export default class btnpayment extends React.Component {
   /////////upfile//////////////////////////
   state = {
     // Initially, no file is selected
-
     img: "",
   };
   onFileUpload = () => {

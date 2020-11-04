@@ -37,7 +37,7 @@ function Navbar() {
             </div>
             <div>
               <span className="user-name">
-                <strong>Jhon Smith</strong>
+        <strong>{localStorage.getItem("fname") +" "+ localStorage.getItem("lname") }</strong>
               </span>
             </div>
             <div>

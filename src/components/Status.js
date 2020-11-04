@@ -31,7 +31,8 @@ class Status extends React.Component {
         .ref("/User/" + user.uid)
         .once("value")
         .then((snapshot) => {
-          console.log(snapshot.val().paid.status);
+          localStorage.setItem("fname", snapshot.val().fname);
+          localStorage.setItem("lname", snapshot.val().lname);
           if (snapshot.val().paid.status == 0) {
             this.setState({
               paid: "ยังไม่จ่าย",
@@ -60,7 +61,7 @@ class Status extends React.Component {
           // // ...
         })
         .then(() => {
-          console.log(this.state.paid);
+
         });
     } else {
       window.location.href = "/sign-in";
@@ -70,7 +71,7 @@ class Status extends React.Component {
     if (this.state.paid != "จ่ายแล้ว") {
       alert(this.state.paid);
     } else {
-      
+
     }
   };
   render() {
@@ -85,7 +86,7 @@ class Status extends React.Component {
         </nav> */}
         <Navbar />
         <div className="Status">
-          
+
           <Table striped bordered hover>
             <thead>
               <tr>

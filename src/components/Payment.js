@@ -22,7 +22,6 @@ class Payment extends React.Component {
         .ref("/User/" + user.uid)
         .once("value")
         .then((snapshot) => {
-          console.log(snapshot.val().paid);
           if (snapshot.val().paid.status == 0) {
             this.setState({
               paid: "ยังไม่จ่าย",
