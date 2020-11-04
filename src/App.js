@@ -10,12 +10,13 @@ import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 // import Home from "./components/payment1";
 // import Home from "./components/test";
-import Home from './components/home';
+// import Home from './components/home';
 import Login from './components/login';
 import Register from './components/register';
 import Status from './components/Status_page';
 import Payment from './components/Payment';
 import Edit from './components/Edit';
+import Home from './components/PaymentP';
 
 import { ReturnAdmin } from './components/login';
 // import { auth,db } from '../../services/firebase';
