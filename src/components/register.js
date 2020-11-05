@@ -32,7 +32,7 @@ export default class register extends Component {
         alert("รหัสผ่านไม่ตรงกัน");
       } else {
         if (this.state.id.length == 13) {
-          alert(this.state.id.length);
+          // alert(this.state.id.length);
           firebase
             .auth()
             .createUserWithEmailAndPassword(

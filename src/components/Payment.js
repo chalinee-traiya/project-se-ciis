@@ -73,7 +73,7 @@ class Payment extends React.Component {
                     // console.log( x > y);
                     // console.log(element.val());
                     if (x > y) {
-                      console.log("789");
+                      // console.log("789");
                       console.log(element.val().af_price);
                       this.setState({
                         price: element.val().af_price,
