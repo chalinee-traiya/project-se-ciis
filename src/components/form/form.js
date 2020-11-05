@@ -23,7 +23,7 @@ class Form extends Component {
     var user = firebase.auth().currentUser;
     if (user != null) {
       console.log(user.uid);
-      await firebase
+       firebase
         .database()
         .ref("/User/" + user.uid)
         .once("value")
@@ -37,7 +37,7 @@ class Form extends Component {
           });
           firebase
             .database()
-            .ref("/usersCCSV/")
+            .ref("/test/")
             .once("value")
             .then((snapshot) => {
               snapshot.forEach((element) => {

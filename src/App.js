@@ -19,9 +19,8 @@ import Edit from './components/Edit';
 import FORGET from './components/Forget';
 import Home from './components/home';
 import SignOut from './components/signout';
-import Form from './components/form/Form'
-
-
+import Form from './components/form/Form';
+import Ticket from './components/ticket';
 import { ReturnAdmin } from './components/login';
 // import { auth,db } from '../../services/firebase';
 
@@ -85,6 +84,7 @@ export default class App extends React.Component {
             <Route path="/forget" component={FORGET} />
             <Route path="/signout" component={SignOut} />
             <Route path="/form" component={Form} />
+            <Route path="/ticket" component={Ticket} />
 
           </Switch>
           {/* <Switch>

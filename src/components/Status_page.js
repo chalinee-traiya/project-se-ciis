@@ -46,13 +46,13 @@ export default class Status_page extends React.Component {
 
   render() {
     return (
-      <div className="App-status-page">
+      <div className="row h-100 justify-content-center align-items-center">
         {this.state.isLoaded ? (
           <Loader
             type="Puff"
-            color="#00BFFF"
-            height={100}
-            width={100}
+            color="#212529"
+            height={50}
+            width={50}
             timeout={3000} //3 secs
           />
         ) : (

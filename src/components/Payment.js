@@ -49,7 +49,7 @@ class Payment extends React.Component {
           } else {
             firebase
               .database()
-              .ref("/usersCCSV/")
+              .ref("/test/")
               .once("value")
               .then((snapshot) => {
                 snapshot.forEach((element) => {

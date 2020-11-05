@@ -50,7 +50,7 @@ class Status extends React.Component {
           } else {
             firebase
               .database()
-              .ref("/usersCCSV/")
+              .ref("/test/")
               .once("value")
               .then((snapshot) => {
                 snapshot.forEach((element) => {
@@ -122,6 +122,12 @@ class Status extends React.Component {
     } else {
     }
   };
+
+  onClickBtn = () => {
+    // this.setState({ isPayment: !this.state.isPayment });
+    window.open('/ticket', '_blank');
+  };
+
   render() {
     return (
       <>
@@ -156,7 +162,7 @@ class Status extends React.Component {
               color="default"
               // className={classes.button}
               startIcon={<ConfirmationNumberIcon />}
-              onClick={this.check}
+              onClick={this.onClickBtn}
             >
               Ticket
               {/* <PrintBill/> */}
