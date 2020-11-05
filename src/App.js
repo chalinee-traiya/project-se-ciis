@@ -1,16 +1,17 @@
-import React from 'react';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
+import React from "react";
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 // import { makeStyles, withStyles } from '@material-ui/core/styles';
 // import Stepper from '@material-ui/core/Stepper';
 // import Step from '@material-ui/core/Step';
 // import StepLabel from '@material-ui/core/StepLabel';
 // import StepConnector from '@material-ui/core/StepConnector';
 // import Button from '@material-ui/core/Button';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // import Home from "./components/payment1";
 // import Home from "./components/test";
 // import Home from './components/home';
+
 import Login from './components/login';
 import Register from './components/register';
 import Status from './components/Status_page';
@@ -22,6 +23,7 @@ import SignOut from './components/signout';
 import Form from './components/form/Form';
 import Ticket from './components/ticket';
 import { ReturnAdmin } from './components/login';
+
 // import { auth,db } from '../../services/firebase';
 
 // import Navbar from './sidebar/Navbar';
@@ -85,6 +87,7 @@ export default class App extends React.Component {
             <Route path="/signout" component={SignOut} />
             <Route path="/form" component={Form} />
             <Route path="/ticket" component={Ticket} />
+
 
           </Switch>
           {/* <Switch>

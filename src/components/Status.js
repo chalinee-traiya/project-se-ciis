@@ -63,7 +63,6 @@ class Status extends React.Component {
                       col2: element.val().paper_name,
                     });
                   }
-
                 });
               });
           }
@@ -94,23 +93,6 @@ class Status extends React.Component {
           // var username =
           //   (snapshot.val() && snapshot.val().username) || "Anonymous";
           // // ...
-        });
-      firebase
-        .database()
-        .ref("/usersCSV/")
-        .once("value")
-        .then((snapshot) => {
-          snapshot.forEach((element) => {
-            // console.log(element.val().email);
-            // console.log(this.state.email);
-            if (element.val().email == this.state.email) {
-              this.setState({
-                paper_name: element.val().paper_name,
-                paper_id: element.val().paper_id,
-              });
-              console.log(this.state.paper_name, this.state.paper_id);
-            }
-          });
         });
     } else {
       window.location.href = "/sign-in";

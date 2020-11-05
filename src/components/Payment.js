@@ -18,6 +18,8 @@ class Payment extends React.Component {
       col2: "",
       head1: "",
       head2: "",
+      date: "",
+      price: "",
     };
   }
   useStyles = makeStyles((theme) => ({
@@ -27,6 +29,7 @@ class Payment extends React.Component {
     },
   }));
   async componentDidMount() {
+    var d = new Date();
     var user = firebase.auth().currentUser;
     if (user != null) {
       firebase
@@ -38,6 +41,7 @@ class Payment extends React.Component {
           localStorage.setItem("lname", snapshot.val().lname);
           this.setState({
             email: snapshot.val().email,
+            date: snapshot.val().paid.timestamp,
           });
           if (snapshot.val().type == 5) {
             this.setState({
@@ -53,14 +57,41 @@ class Payment extends React.Component {
               .once("value")
               .then((snapshot) => {
                 snapshot.forEach((element) => {
-                  console.log(element.val().type);
+                  var date = this.state.date.split("/");
+
+                  element.forEach((element1) => {
+                    console.log(element1);
+                  });
                   if (element.val().email == this.state.email) {
-                    this.setState({
-                      head1: "Research ID",
-                      head2: "Research Name",
-                      col1: element.val().paper_id,
-                      col2: element.val().paper_name,
-                    });
+                    console.log("789");
+                    var x = new Date(
+                      d.getFullYear(),
+                      d.getMonth() + 1,
+                      d.getDate()
+                    );
+                    var y = new Date(date[2], date[1], date[0]);
+                    // console.log( x > y);
+                    // console.log(element.val());
+                    if (x > y) {
+                      console.log("789");
+                      console.log(element.val().af_price);
+                      this.setState({
+                        price: element.val().af_price,
+                      });
+                    } else {
+                      console.log("123");
+                      this.setState({
+                        head1: "Research ID",
+                        head2: "Price",
+                        col1: element.val().paper_id,
+                        col2: element.val().be_price,
+                      });
+                    }
+                    // console.log(this.state.price);
+                    // console.log(element.val().be_price);
+                    // console.log(d.getDate(),parseInt(date[0]) );
+                    // console.log(d.getMonth()+1,parseInt(date[1]));
+                    // console.log(d.getFullYear(),parseInt(date[2]));
                   }
                 });
               });
@@ -147,28 +178,27 @@ class Payment extends React.Component {
     <label for="radioFood">Food</label>
     </div> */}
 
+              <div>
+                <input
+                  type="radio"
+                  id="radio-1"
+                  name="myRadio"
+                  value="radio-1"
+                  checked={this.state.selected === "radio-1"}
+                  onChange={(e) => this.setState({ selected: e.target.value })}
+                />
+                <img src="/images/paypal.png" width="80px" />
 
-            <div>
-              <input
-                type="radio"
-                id="radio-1"
-                name="myRadio"
-                value="radio-1"
-                checked={this.state.selected === "radio-1"}
-                onChange={(e) => this.setState({ selected: e.target.value })}
-              />
-              <img src="/images/paypal.png" width="80px" />
-
-              <input
-                type="radio"
-                id="radio-2"
-                name="myRadio"
-                value="radio-2"
-                checked={this.state.selected === "radio-2"}
-                onChange={(e) => this.setState({ selected: e.target.value })}
-              />
-              <img src="/images/tmb.png" width="80px" />
-            </div>
+                <input
+                  type="radio"
+                  id="radio-2"
+                  name="myRadio"
+                  value="radio-2"
+                  checked={this.state.selected === "radio-2"}
+                  onChange={(e) => this.setState({ selected: e.target.value })}
+                />
+                <img src="/images/tmb.png" width="80px" />
+              </div>
 
               <div>
                 <Button

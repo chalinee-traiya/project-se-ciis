@@ -46,6 +46,7 @@ export default class Status_page extends React.Component {
 
   render() {
     return (
+
       <div className="row h-100 justify-content-center align-items-center">
         {this.state.isLoaded ? (
           <Loader
@@ -53,6 +54,7 @@ export default class Status_page extends React.Component {
             color="#212529"
             height={50}
             width={50}
+
             timeout={3000} //3 secs
           />
         ) : (
