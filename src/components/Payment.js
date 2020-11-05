@@ -8,6 +8,18 @@ import "./payment.css";
 import firebase from "firebase";
 
 class Payment extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      email: "",
+      password: "",
+      paid: "",
+      col1: "",
+      col2: "",
+      head1: "",
+      head2: "",
+    };
+  }
   useStyles = makeStyles((theme) => ({
     button: {
       marginTop: 100,
@@ -22,7 +34,37 @@ class Payment extends React.Component {
         .ref("/User/" + user.uid)
         .once("value")
         .then((snapshot) => {
-
+          localStorage.setItem("fname", snapshot.val().fname);
+          localStorage.setItem("lname", snapshot.val().lname);
+          this.setState({
+            email: snapshot.val().email,
+          });
+          if (snapshot.val().type == 5) {
+            this.setState({
+              head1: "Type",
+              head2: "Price",
+              col1: "On-site-Participant",
+              col2: 2000,
+            });
+          } else {
+            firebase
+              .database()
+              .ref("/usersCCSV/")
+              .once("value")
+              .then((snapshot) => {
+                snapshot.forEach((element) => {
+                  console.log(element.val().type);
+                  if (element.val().email == this.state.email) {
+                    this.setState({
+                      head1: "Research ID",
+                      head2: "Research Name",
+                      col1: element.val().paper_id,
+                      col2: element.val().paper_name,
+                    });
+                  }
+                });
+              });
+          }
           if (snapshot.val().paid.status == 0) {
             this.setState({
               paid: "ยังไม่จ่าย",
@@ -56,13 +98,12 @@ class Payment extends React.Component {
   }
 
   /////////upfile//////////////////////////
-  state = {
-    // Initially, no file is selected
-    selectedFile: null,
-    isPayment: false,
-    paid: "",
-  };
-
+  // state = {
+  //   // Initially, no file is selected
+  //   selectedFile: null,
+  //   isPayment: false,
+  //   paid: "",
+  // };
 
   onClickBtn = () => {
     this.setState({ isPayment: !this.state.isPayment });
@@ -77,17 +118,19 @@ class Payment extends React.Component {
           <Table striped bordered hover>
             <thead>
               <tr>
-                <th>Research ID</th>
-                <th>Research Name</th>
-                <th>Price</th>
+                <th>ชื่องาน</th>
+                <th>{this.state.head1}</th>
+                <th>{this.state.head2}</th>
+
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>000000</td>
-                <td>Register</td>
-                <th>8000</th>
+                <th>CiiS</th>
+                <td>{this.state.col1}</td>
+                <td>{this.state.col2}</td>
+
                 <td>{this.state.paid}</td>
               </tr>
             </tbody>
@@ -103,27 +146,28 @@ class Payment extends React.Component {
     <label for="radioFood">Food</label>
     </div> */}
 
-              <div>
-                <input
-                  type="radio"
-                  id="radio-1"
-                  name="myRadio"
-                  value="radio-1"
-                  checked={this.state.selected === "radio-1"}
-                  onChange={(e) => this.setState({ selected: e.target.value })}
-                />
-                <img src="/images/paypal.png" width="80px" />
 
-                <input
-                  type="radio"
-                  id="radio-2"
-                  name="myRadio"
-                  value="radio-2"
-                  checked={this.state.selected === "radio-2"}
-                  onChange={(e) => this.setState({ selected: e.target.value })}
-                />
-                <img src="/images/tmb.png" width="80px" />
-              </div>
+            <div>
+              <input
+                type="radio"
+                id="radio-1"
+                name="myRadio"
+                value="radio-1"
+                checked={this.state.selected === "radio-1"}
+                onChange={(e) => this.setState({ selected: e.target.value })}
+              />
+              <img src="/images/paypal.png" width="80px" />
+
+              <input
+                type="radio"
+                id="radio-2"
+                name="myRadio"
+                value="radio-2"
+                checked={this.state.selected === "radio-2"}
+                onChange={(e) => this.setState({ selected: e.target.value })}
+              />
+              <img src="/images/tmb.png" width="80px" />
+            </div>
 
               <div>
                 <Button

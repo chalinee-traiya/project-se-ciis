@@ -50,7 +50,7 @@ export default class Login extends Component {
         .then(
           async (user) => {
             localStorage.setItem("UID-login", user.uid);
-
+            localStorage.setItem("email", this.state.email);
             if (user != null) {
               // db.ref('Admin/').on("value", snapshot => {
               //   snapshot.forEach((snap) => {

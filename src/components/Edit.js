@@ -563,13 +563,6 @@ export default class Edit extends Component {
                   SUBMIT
                 </button>
               </div>
-
-              <p className="have-account">
-                You have an account?
-                <Link to={"/sign-in"}>
-                  <a href="#">Sign In</a>
-                </Link>
-              </p>
             </div>
           </div>
         </form>

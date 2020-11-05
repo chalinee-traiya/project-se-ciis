@@ -59,42 +59,36 @@ class Status extends React.Component {
                     this.setState({
                       head1: "Research ID",
                       head2: "Research Name",
-                      col1: element.val().type,
-                      col2: element.val().af_price,
+                      col1: element.val().paper_id,
+                      col2: element.val().paper_name,
                     });
                   }
 
                 });
               });
           }
-          if (snapshot.val().paid.type != 0) {
-            if (snapshot.val().paid.status == 0) {
+          if (snapshot.val().paid.status == 0) {
+            this.setState({
+              paid: "ยังไม่จ่าย",
+            });
+          } else {
+            if (snapshot.val().paid.status == 1) {
               this.setState({
-                paid: "ยังไม่จ่าย",
+                paid: "รอตรวจสอบ",
               });
             } else {
-              if (snapshot.val().paid.status == 1) {
+              if (snapshot.val().paid.status == 2) {
                 this.setState({
-                  paid: "รอตรวจสอบ",
+                  paid: "จ่ายแล้ว",
                 });
               } else {
-                if (snapshot.val().paid.status == 2) {
+                if (snapshot.val().paid.status == 3) {
                   this.setState({
-                    paid: "จ่ายแล้ว",
+                    paid: "ยกเลิก",
                   });
-                } else {
-                  if (snapshot.val().paid.status == 3) {
-                    this.setState({
-                      paid: "ยกเลิก",
-                    });
-                  }
                 }
               }
             }
-          } else {
-            this.setState({
-              paid: "-",
-            });
           }
 
           // var username =
