@@ -9,18 +9,6 @@ import firebase from "firebase";
 import Form from './form/Form'
 
 class Payment extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      email: "",
-      password: "",
-      paid: "",
-      col1: "",
-      col2: "",
-      head1: "",
-      head2: "",
-    };
-  }
   useStyles = makeStyles((theme) => ({
     button: {
       marginTop: 100,
@@ -36,37 +24,7 @@ class Payment extends React.Component {
         .ref("/User/" + user.uid)
         .once("value")
         .then((snapshot) => {
-          localStorage.setItem("fname", snapshot.val().fname);
-          localStorage.setItem("lname", snapshot.val().lname);
-          this.setState({
-            email: snapshot.val().email,
-          });
-          if (snapshot.val().type == 5) {
-            this.setState({
-              head1: "Type",
-              head2: "Price",
-              col1: "On-site-Participant",
-              col2: 2000,
-            });
-          } else {
-            firebase
-              .database()
-              .ref("/usersCCSV/")
-              .once("value")
-              .then((snapshot) => {
-                snapshot.forEach((element) => {
-                  console.log(element.val().type);
-                  if (element.val().email == this.state.email) {
-                    this.setState({
-                      head1: "Research ID",
-                      head2: "Research Name",
-                      col1: element.val().paper_id,
-                      col2: element.val().paper_name,
-                    });
-                  }
-                });
-              });
-          }
+          console.log(snapshot.val().paid);
           if (snapshot.val().paid.status == 0) {
             this.setState({
               paid: "ยังไม่จ่าย",
@@ -100,13 +58,36 @@ class Payment extends React.Component {
   }
 
   /////////upfile//////////////////////////
-  // state = {
-  //   // Initially, no file is selected
-  //   selectedFile: null,
-  //   isPayment: false,
-  //   paid: "",
-  // };
+  state = {
+    // Initially, no file is selected
+    selectedFile: null,
+    isPayment: false,
+    paid: "",
+  };
+  onFileChange = (event) => {
+    // Update the state
+    this.setState({ selectedFile: event.target.files[0] });
+  };
+  onFileUpload = () => {
+    // this.setState({isPayment: !this.state.isPayment})
+    console.log(this.isPayment);
+    //   // Create an object of formData
+    //   const formData = new FormData();
 
+    //   // Update the formData object
+    //   formData.append(
+    //     "myFile",
+    //     this.state.selectedFile,
+    //     this.state.selectedFile.name
+    //   );
+
+    //   // Details of the uploaded file
+    //   console.log(this.state.selectedFile);
+
+    //   // Request made to the backend api
+    //   // Send formData object
+    //   // axios.post("api/uploadfile", formData);
+  };
   onClickBtn = () => {
     // this.setState({ isPayment: !this.state.isPayment });
     if(this.state.selected =="TMB"){
@@ -121,38 +102,35 @@ class Payment extends React.Component {
     return (
       <div className="payment">
         <Navbar />
-        <div class="col-8 mx-auto mt-5">
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>ชื่องาน</th>
-                <th>{this.state.head1}</th>
-                <th>{this.state.head2}</th>
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Research ID</th>
+              <th>Research Name</th>
+              <th>Price</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>000000</td>
+              <td>Register</td>
+              <th>8000</th>
+              <td>{this.state.paid}</td>
+            </tr>
+          </tbody>
+        </Table>
 
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th>CiiS</th>
-                <td>{this.state.col1}</td>
-                <td>{this.state.col2}</td>
-
-                <td>{this.state.paid}</td>
-              </tr>
-            </tbody>
-          </Table>
-          {isPayment ? (
-            <Btnpayment />
-          ) : (
-            <div>
-              {/* <div>
+        {isPayment ? (
+          <Btnpayment />
+        ) : (
+          <div>
+            {/* <div>
   <input type='radio' id='radioFood' name='radioFood' value='radioFood'
 
     checked={this.state.selected === 'Food'} />
     <label for="radioFood">Food</label>
     </div> */}
-
 
             <div>
               <input
@@ -176,19 +154,18 @@ class Payment extends React.Component {
               <img src="/images/tmb.png" width="80px" />
             </div>
 
-              <div>
-                <Button
-                  onClick={this.onClickBtn}
-                  variant="contained"
-                  color="default"
-                  className={this.useStyles.button}
-                >
-                  Confirm
-                </Button>
-              </div>
+            <div>
+              <Button
+                onClick={this.onClickBtn}
+                variant="contained"
+                color="default"
+                className={this.useStyles.button}
+              >
+                Confirm
+              </Button>
             </div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
     );
   }

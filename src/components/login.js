@@ -22,7 +22,9 @@ export default class Login extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  repass(event) {}
+  repass(event) {
+
+  }
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -43,14 +45,13 @@ export default class Login extends Component {
     // console.log(this.state.email + this.state.password);
 
     try {
-
       firebase
         .auth()
         .signInWithEmailAndPassword(this.state.email, this.state.password)
         .then(
           async (user) => {
-            localStorage.setItem("UID-login", user.uid);
-
+            var user = firebase.auth().currentUser.uid;
+            localStorage.setItem("UID-login", user);
             if (user != null) {
               // db.ref('Admin/').on("value", snapshot => {
               //   snapshot.forEach((snap) => {
@@ -67,7 +68,7 @@ export default class Login extends Component {
               //   })
 
               // })
-              window.location.href = "/status";
+              window.location.href = "/Status";
             } else {
               alert("else");
             }
@@ -76,7 +77,6 @@ export default class Login extends Component {
             alert(err.message);
           }
         );
-
       event.preventDefault();
     } catch (err) {
       // alert(err);
