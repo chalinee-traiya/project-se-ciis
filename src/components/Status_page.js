@@ -46,10 +46,11 @@ export default class Status_page extends React.Component {
 
   render() {
     return (
-      <div className="App-status-page">
+      <div class="App-status-page ">
         {this.state.isLoaded ? (
           <Loader
             type="Puff"
+
             color="#00BFFF"
             height={100}
             width={100}
