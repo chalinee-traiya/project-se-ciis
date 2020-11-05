@@ -6,6 +6,7 @@ import Btnpayment from "./btnpayment";
 import Button from "@material-ui/core/Button";
 import "./payment.css";
 import firebase from "firebase";
+import Form from './form/Form'
 
 class Payment extends React.Component {
   constructor() {
@@ -28,6 +29,7 @@ class Payment extends React.Component {
   }));
   async componentDidMount() {
     var user = firebase.auth().currentUser;
+    console.log(user)
     if (user != null) {
       firebase
         .database()
@@ -106,7 +108,12 @@ class Payment extends React.Component {
   // };
 
   onClickBtn = () => {
-    this.setState({ isPayment: !this.state.isPayment });
+    // this.setState({ isPayment: !this.state.isPayment });
+    if(this.state.selected =="TMB"){
+      window.open("/form", "_blank")
+    
+    }
+    console.log(this.state.selected)
   };
 
   render() {
@@ -146,27 +153,28 @@ class Payment extends React.Component {
     <label for="radioFood">Food</label>
     </div> */}
 
-              <div>
-                <input
-                  type="radio"
-                  id="radio-1"
-                  name="myRadio"
-                  value="radio-1"
-                  checked={this.state.selected === "radio-1"}
-                  onChange={(e) => this.setState({ selected: e.target.value })}
-                />
-                <img src="/images/paypal.png" width="80px" />
 
-                <input
-                  type="radio"
-                  id="radio-2"
-                  name="myRadio"
-                  value="radio-2"
-                  checked={this.state.selected === "radio-2"}
-                  onChange={(e) => this.setState({ selected: e.target.value })}
-                />
-                <img src="/images/tmb.png" width="80px" />
-              </div>
+            <div>
+              <input
+                type="radio"
+                id="Paypal"
+                name="myRadio"
+                value="Paypal"
+                checked={this.state.selected === "Paypal"}
+                onChange={(e) => this.setState({ selected: e.target.value })}
+              />
+              <img src="/images/paypal.png" width="80px" />
+
+              <input
+                type="radio"
+                id="TMB"
+                name="myRadio"
+                value="TMB"
+                checked={this.state.selected === "TMB"}
+                onChange={(e) => this.setState({ selected: e.target.value })}
+              />
+              <img src="/images/tmb.png" width="80px" />
+            </div>
 
               <div>
                 <Button
