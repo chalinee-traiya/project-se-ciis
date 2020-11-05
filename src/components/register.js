@@ -59,8 +59,10 @@ export default class register extends Component {
                   is_admin: "",
                   paid: {
                     status: 0,
-                    timestamp: "",
+                    timestamp: "31/6/2021",
                     img: "",
+                    price:2000,
+                    type:0
                   },
                   nation: "Thai",
                   type: 5,
