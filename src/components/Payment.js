@@ -6,6 +6,7 @@ import Btnpayment from "./btnpayment";
 import Button from "@material-ui/core/Button";
 import "./payment.css";
 import firebase from "firebase";
+import Form from './form/Form'
 
 class Payment extends React.Component {
   useStyles = makeStyles((theme) => ({
@@ -16,6 +17,7 @@ class Payment extends React.Component {
   }));
   async componentDidMount() {
     var user = firebase.auth().currentUser;
+    console.log(user)
     if (user != null) {
       firebase
         .database()
@@ -87,7 +89,12 @@ class Payment extends React.Component {
     //   // axios.post("api/uploadfile", formData);
   };
   onClickBtn = () => {
-    this.setState({ isPayment: !this.state.isPayment });
+    // this.setState({ isPayment: !this.state.isPayment });
+    if(this.state.selected =="TMB"){
+      window.open("/form", "_blank")
+    
+    }
+    console.log(this.state.selected)
   };
 
   render() {
@@ -128,20 +135,20 @@ class Payment extends React.Component {
             <div>
               <input
                 type="radio"
-                id="radio-1"
+                id="Paypal"
                 name="myRadio"
-                value="radio-1"
-                checked={this.state.selected === "radio-1"}
+                value="Paypal"
+                checked={this.state.selected === "Paypal"}
                 onChange={(e) => this.setState({ selected: e.target.value })}
               />
               <img src="/images/paypal.png" width="80px" />
 
               <input
                 type="radio"
-                id="radio-2"
+                id="TMB"
                 name="myRadio"
-                value="radio-2"
-                checked={this.state.selected === "radio-2"}
+                value="TMB"
+                checked={this.state.selected === "TMB"}
                 onChange={(e) => this.setState({ selected: e.target.value })}
               />
               <img src="/images/tmb.png" width="80px" />
