@@ -72,7 +72,7 @@ export default class btnpayment extends React.Component {
 
         <div id="elementH"></div>
         <Button
-          onClick={this.test}
+          onClick={this.onFileUpload}
           variant="contained"
           color="default"
           className={this.useStyles.button}
