@@ -1,23 +1,23 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 // import { Form } from 'semantic-ui-react'
-import "./register.css";
-import firebase from "firebase";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import './register.css';
+import firebase from 'firebase';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 
 export default class register extends Component {
   constructor() {
     super();
     this.state = {
-      fname: "",
-      lname: "",
-      id: "",
-      email: "",
-      username: "",
-      password: "",
-      cpassword: "",
-      uid: "",
-      nation: "",
-      type: "",
+      fname: '',
+      lname: '',
+      id: '',
+      email: '',
+      username: '',
+      password: '',
+      cpassword: '',
+      uid: '',
+      nation: '',
+      type: '',
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,7 +29,7 @@ export default class register extends Component {
     var user = firebase.auth().currentUser;
     try {
       if (this.state.password != this.state.cpassword) {
-        alert("รหัสผ่านไม่ตรงกัน");
+        alert('รหัสผ่านไม่ตรงกัน');
       } else {
         if (this.state.id.length == 13) {
           alert(this.state.id.length);
@@ -49,23 +49,25 @@ export default class register extends Component {
               console.log(this.state.uid);
               firebase
                 .database()
-                .ref("User")
+                .ref('User')
                 .child(this.state.uid)
                 .set({
                   fname: this.state.fname,
                   lname: this.state.lname,
                   id: this.state.id,
                   email: this.state.email,
-                  is_admin: "",
+                  is_admin: '',
                   paid: {
                     status: 0,
-                    timestamp: "",
-                    img: "",
+                    timestamp: '',
+                    img: '',
+                    price: 2000,
+                    type: 0,
                   },
-                  nation: "Thai",
+                  nation: 'Thai',
                   type: 5,
                 });
-              alert("สมัครสำเร็จ !");
+              alert('สมัครสำเร็จ !');
             })
             .catch((error) => {
               // Handle Errors here.
@@ -91,13 +93,13 @@ export default class register extends Component {
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">
                   <img src="/images/register.png" width="30px" />
-                  <Link className="nav-link" to={"/register"}>
+                  <Link className="nav-link" to={'/register'}>
                     REGISTER
                   </Link>
                 </li>
                 <li className="nav-item">
                   <img src="/images/login.png" width="30px" />
-                  <Link className="nav-link" to={"/sign-in"}>
+                  <Link className="nav-link" to={'/sign-in'}>
                     LOGIN
                   </Link>
                 </li>
@@ -107,8 +109,8 @@ export default class register extends Component {
         </nav>
         <div className="auth-wrapper">
           <div className="auth-inner">
-            <div class="form-row">
-              <div class="form-group col-md-6">
+            <div class="form-row justify-content-center">
+              <div class="form-group">
                 <label for="id">
                   ID Card / Passport No.<span>*</span>
                 </label>
@@ -122,8 +124,8 @@ export default class register extends Component {
                 />
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
+            <div class="form-row justify-content-center">
+              <div class="form-group">
                 <label for="first-name">
                   First Name <span>*</span>
                 </label>
@@ -137,8 +139,8 @@ export default class register extends Component {
                 />
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
+            <div class="form-row justify-content-center">
+              <div class="form-group">
                 <label for="last-name">
                   Last Name <span>*</span>
                 </label>
@@ -152,8 +154,8 @@ export default class register extends Component {
                 />
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6 ">
+            <div class="form-row justify-content-center">
+              <div class="form-group">
                 <label for="input-email">
                   Email <span>*</span>
                 </label>
@@ -168,43 +170,50 @@ export default class register extends Component {
               </div>
             </div>
 
-            <div class="form-group">
-              <label for="inputpassword">
-                Password <span>*</span>
-              </label>
-              <input
-                type="password"
-                class="form-control"
-                id="inputpassword"
-                placeholder="••••••••"
-                onChange={this.handleChange}
-                name="password"
-              />
+            <div class="form-row justify-content-center">
+              <div class="form-group">
+                <label for="inputpassword">
+                  Password <span>*</span>
+                </label>
+                <input
+                  type="password"
+                  class="form-control justify-content-center"
+                  id="inputpassword"
+                  placeholder="••••••••"
+                  onChange={this.handleChange}
+                  name="password"
+                />
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="inputconfirm">
-                Confirm Password <span>*</span>
-              </label>
-              <input
-                type="password"
-                class="form-control"
-                id="inputconfirm"
-                placeholder="••••••••"
-                onChange={this.handleChange}
-                name="cpassword"
-              />
+            <div class="form-row justify-content-center">
+              <div class="form-group">
+                <label for="inputconfirm">
+                  Confirm Password <span>*</span>
+                </label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="inputconfirm"
+                  placeholder="••••••••"
+                  onChange={this.handleChange}
+                  name="cpassword"
+                />
+              </div>
             </div>
 
-            <div align="right">
-              <button type="submit" class="btn btn-secondary ">
+            <div align="center">
+              <button
+                type="submit"
+                class="btn btn-secondary justify-content-center"
+              >
                 SUBMIT
               </button>
             </div>
 
             <p className="have-account">
               You have an account?
-              <Link to={"/sign-in"}>
+              <Link to={'/sign-in'}>
                 <a href="#">Sign In</a>
               </Link>
             </p>

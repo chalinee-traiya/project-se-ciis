@@ -15,7 +15,6 @@ export default class btnpayment extends React.Component {
   /////////upfile//////////////////////////
   state = {
     // Initially, no file is selected
-
     img: "",
   };
   onFileUpload = () => {
@@ -73,7 +72,7 @@ export default class btnpayment extends React.Component {
 
         <div id="elementH"></div>
         <Button
-          onClick={this.test}
+          onClick={this.onFileUpload}
           variant="contained"
           color="default"
           className={this.useStyles.button}
