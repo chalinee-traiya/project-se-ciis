@@ -23,13 +23,12 @@ export default class Forget extends Component {
     this.setState({ [evt.target.name]: evt.target.value });
   }
   handleSubmit(event) {
-      console.log(this.state.email);
+    console.log(this.state.email);
     var auth = firebase.auth();
     auth
       .sendPasswordResetEmail(this.state.email)
       .then(() => {
         alert("ระบบส่งลิงค์สำหรับรีเซ็ทรหัสผ่านไปใน Email ของคุณแล้ว !");
-
       })
       .catch(function (error) {
         // An error happened.
