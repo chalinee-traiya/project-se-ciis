@@ -16,10 +16,11 @@ import Register from './components/register';
 import Status from './components/Status_page';
 import Payment from './components/Payment';
 import Edit from './components/Edit';
-
 import FORGET from './components/Forget';
 import Home from './components/home';
+import SignOut from './components/signout';
 import Form from './components/form/Form'
+
 
 import { ReturnAdmin } from './components/login';
 // import { auth,db } from '../../services/firebase';
@@ -82,7 +83,9 @@ export default class App extends React.Component {
             <Route path="/payment" component={Payment} />
             <Route path="/edit" component={Edit} />
             <Route path="/forget" component={FORGET} />
+            <Route path="/signout" component={SignOut} />
             <Route path="/form" component={Form} />
+
           </Switch>
           {/* <Switch>
             <Route exact path='/' component={Edit} />

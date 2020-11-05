@@ -352,7 +352,7 @@ export default class Edit extends Component {
   componentDidMount() {
     var user = firebase.auth().currentUser;
     if (user != null) {
-      return firebase
+      firebase
         .database()
         .ref("/User/" + user.uid)
         .once("value")
@@ -442,13 +442,11 @@ export default class Edit extends Component {
         updates["/User/" + user.uid + "/type/"] = this.state.type;
         firebase.database().ref().update(updates);
         firebase
-        .auth()
-        .signOut()
-        .then(() => {
-          window.location.href = "/sign-in";
-        });
-
-
+          .auth()
+          .signOut()
+          .then(() => {
+            window.location.href = "/sign-in";
+          });
       }
     } catch (err) {
       alert(err);
@@ -460,160 +458,114 @@ export default class Edit extends Component {
   render() {
     return (
       <div className="edit">
-      <Navbar />
-      <form onSubmit={this.handleSubmit}>
-
-        <div className="auth-wrapper">
-          <div className="auth-inner">
-            <div>
-              <h1>Register</h1>
-              <div className="under-register">
-                <p>Register on the platform </p>
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <div>
-                  <label for="inputEmail4">
-                    Nationality <span>*</span>
-                  </label>
+        <Navbar />
+        <form onSubmit={this.handleSubmit}>
+          <div className="auth-wrapper">
+            <div className="auth-inner">
+              <div>
+                <h1>Register</h1>
+                <div className="under-register">
+                  <p>Register on the platform </p>
                 </div>
+              </div>
 
-                <div class="form-check form-check-inline">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="id">
+                    ID Card / Passport No.<span>*</span>
+                  </label>
+                  {/* <input type="id" class="form-control" id="id" name="idcard" placeholder="ex.1103702411xxx....."/> */}
                   <input
-                    class="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio1"
-                    value="Thai"
-                    onChange={this.handleChangenation}
-                    name="nation"
-                    checked={this.state.nation == "Thai"}
+                    type="text"
+                    class="form-control"
+                    placeholder="ex.1103702411xxx....."
+                    onChange={this.handleChangeid}
+                    name="id"
+                    value={this.state.id}
                   />
-
-                  <label class="form-check-label" for="inlineRadio1">
-                    Thai
-                  </label>
                 </div>
-                <div class="form-check form-check-inline">
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="first-name">First Name *</label>
                   <input
-                    class="form-check-input"
-                    type="radio"
-                    name="inlineRadioOptions"
-                    id="inlineRadio2"
-                    value="Foreign"
-                    onChange={this.handleChangenation}
-                    name="nation"
-                    checked={this.state.nation == "Foreign"}
+                    type="first-name"
+                    class="form-control"
+                    id="first-name"
+                    placeholder="Your First-Name - ex.Chalinee......"
+                    onChange={this.handleChangefname}
+                    name="fname"
+                    value={this.state.fname}
                   />
-                  <label class="form-check-label" for="inlineRadio2">
-                    Foreign
-                  </label>
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="last-name">Last Name *</label>
+                  <input
+                    type="last-name"
+                    class="form-control"
+                    id="last-name"
+                    placeholder="Your Last-Name - ex.Traiyapanjawit......"
+                    onChange={this.handleChangelname}
+                    name="lname"
+                    value={this.state.lname}
+                  />
                 </div>
               </div>
-              <div class="form-group col-md-6">
-                <label for="id">
-                  ID Card / Passport No.<span>*</span>
-                </label>
-                {/* <input type="id" class="form-control" id="id" name="idcard" placeholder="ex.1103702411xxx....."/> */}
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="ex.1103702411xxx....."
-                  onChange={this.handleChangeid}
-                  name="id"
-                  value={this.state.id}
-                />
+
+              <div class="form-row">
+                <div class="form-group col-md-6 ">
+                  <label for="input-email">Email *</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="input-email"
+                    placeholder="Email"
+                    onChange={this.handleChangeemail}
+                    name="email"
+                    value={this.state.email}
+                    disabled
+                  />
+                </div>
+
+                <div class="form-group col-md-6">
+                  <label for="inputState">
+                    Type identity verification <span>*</span>
+                  </label>
+                  <select
+                    id="inputState"
+                    class="form-controldrop"
+                    onChange={this.handleChangetype}
+                    name="type"
+                    required
+                    disabled
+                  >
+                    <option value="1" selected={this.state.type == 1}>
+                      Author / Regular Full Paper (Thai Only)
+                    </option>
+                    <option value="2" selected={this.state.type == 2}>
+                      Author / Virtual Full Paper(Thai & Foreign)
+                    </option>
+                    <option value="3" selected={this.state.type == 3}>
+                      Author / Regular Short Paper (Thai Only)
+                    </option>
+                    <option value="4" selected={this.state.type == 4}>
+                      Author / Virtual Short Paper (Thai & Foreign)
+                    </option>
+                    <option value="5" selected={this.state.type == 5}>
+                      Participant (Thai Only)
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div align="right">
+                <button type="submit" class="btn btn-secondary ">
+                  SUBMIT
+                </button>
               </div>
             </div>
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="first-name">First Name *</label>
-                <input
-                  type="first-name"
-                  class="form-control"
-                  id="first-name"
-                  placeholder="Your First-Name - ex.Chalinee......"
-                  onChange={this.handleChangefname}
-                  name="fname"
-                  value={this.state.fname}
-                />
-              </div>
-
-              <div class="form-group col-md-6">
-                <label for="last-name">Last Name *</label>
-                <input
-                  type="last-name"
-                  class="form-control"
-                  id="last-name"
-                  placeholder="Your Last-Name - ex.Traiyapanjawit......"
-                  onChange={this.handleChangelname}
-                  name="lname"
-                  value={this.state.lname}
-                />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group col-md-6 ">
-                <label for="input-email">Email *</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  id="input-email"
-                  placeholder="Email"
-                  onChange={this.handleChangeemail}
-                  name="email"
-                  value={this.state.email}
-                  disabled
-                />
-              </div>
-
-              <div class="form-group col-md-6">
-                <label for="inputState">
-                  Type identity verification <span>*</span>
-                </label>
-                <select
-                  id="inputState"
-                  class="form-controldrop"
-                  onChange={this.handleChangetype}
-                  name="type"
-                  required
-                >
-                  <option value="1" selected={this.state.type == 1}>
-                    Author / Regular Full Paper (Thai Only)
-                  </option>
-                  <option value="2" selected={this.state.type == 2}>
-                    Author / Virtual Full Paper(Thai & Foreign)
-                  </option>
-                  <option value="3" selected={this.state.type == 3}>
-                    Author / Regular Short Paper (Thai Only)
-                  </option>
-                  <option value="4" selected={this.state.type == 4}>
-                    Author / Virtual Short Paper (Thai & Foreign)
-                  </option>
-                  <option value="5" selected={this.state.type == 5}>
-                    Participant (Thai Only)
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div align="right">
-              <button type="submit" class="btn btn-secondary ">
-                SUBMIT
-              </button>
-            </div>
-
-            <p className="have-account">
-              You have an account?
-              <Link to={"/sign-in"}>
-                <a href="#">Sign In</a>
-              </Link>
-            </p>
           </div>
-        </div>
-      </form>
+        </form>
       </div>
     );
   }
