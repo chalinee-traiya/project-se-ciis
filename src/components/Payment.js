@@ -107,6 +107,7 @@ class Payment extends React.Component {
 
   onClickBtn = () => {
     this.setState({ isPayment: !this.state.isPayment });
+    window.open('/form', '_blank');
   };
 
   render() {
